@@ -1,0 +1,8 @@
+{
+    "languageserver": {
+        "clojure-lsp": {
+            "command": "clojure-lsp",
+            "filetypes": ["clojure"]
+        }
+    }
+}
