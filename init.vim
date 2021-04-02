@@ -4,15 +4,11 @@ runtime plugins.vim
 " COC Config:
 runtime coc-config.vim
 
-" Map leader key to space
+" Leader Space:
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" Keep marks
-keepmarks
-
-
-" UI Config
+" UI Config:
 set nu
 set relativenumber
 set showmatch
@@ -24,13 +20,17 @@ set smartcase
 set cmdheight=2
 set signcolumn=yes
 
-" Folding
+" Folding:
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=syntax
 
-" Tabs & Tabbery
+" Marks:
+keepmarks
+" set foldmethod=marker
+
+" Tabs:
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -38,17 +38,26 @@ set expandtab
 set autoindent
 set copyindent
 
+" Miscellaneousness:
 set hidden
-set nobackup
 set encoding=utf-8
+set nobackup
 set nowritebackup
 
-" Navigating buffers
-nnoremap gb :bnext<CR>
-nnoremap gB :bprevious<CR>
+" Allow mouse usage
+set mouse=a
 
 " Yank to system clipboard also
 set clipboard=unnamedplus
+
+" Netrw:
+let netrw_liststyle=3
+let g:netrw_keepdir=1
+
+" Navigating Buffers:
+nnoremap bn :bnext<CR>
+nnoremap bp :bprevious<CR>
+nnoremap bd :bdelete<CR>
 
 " Status Line:
 let g:airline_powerline_fonts = 1
@@ -124,5 +133,18 @@ set shell=/bin/bash
 
 " Automatically close the preview window.
 " autocmd CompleteDone * pclose
+
+" Git:
+" Open vim with Git.
+function Onlygit()
+    :G
+    :wincmd j
+    :bdelete
+endfunction
+
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiffsplit!<CR>
+nnoremap gdh :diffget //2<CR>| " From the buffer on the left (Target)
+nnoremap gdl :diffget //3<CR>| " From the buffer on the right (Merge)
 
 filetype plugin indent on
