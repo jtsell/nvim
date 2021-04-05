@@ -4,7 +4,7 @@ runtime plugins.vim
 " COC Config:
 runtime coc-config.vim
 
-" Leader Space:
+" Leader:
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
@@ -136,15 +136,23 @@ set shell=/bin/bash
 
 " Git:
 " Open vim with Git.
-function Onlygit()
-    :G
-    :wincmd j
-    :bdelete
+function Git_or_Files()
+    silent! !git rev-parse --is-inside-work-tree
+    if v:shell_error == 0
+        :G
+        :wincmd j
+        :bdelete
+    else
+        :Files
+    endif
 endfunction
 
 " Fugitive Conflict Resolution
 nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>| " From the buffer on the left (Target)
 nnoremap gdl :diffget //3<CR>| " From the buffer on the right (Merge)
+
+" Git Blame
+nnoremap <leader>gb :G blame<CR>
 
 filetype plugin indent on
