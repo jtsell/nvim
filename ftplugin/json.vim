@@ -1,0 +1,2 @@
+command! JQ :%!jq '.'
+RainbowParentheses
