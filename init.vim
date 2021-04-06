@@ -91,7 +91,8 @@ nnoremap <leader>s :BLines<CR>
 nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>: :Commands<CR>
 nnoremap <leader>; :Commands<CR>
-nnoremap <leader>f :Files<CR>
+" nnoremap <leader>f :Files<CR>
+nnoremap <leader>f :call GFiles_or_Files()<CR>
 
 " Move cursor to beginning or end of line.
 map <C-a> ^
@@ -135,7 +136,7 @@ set shell=/bin/bash
 " autocmd CompleteDone * pclose
 
 " Git:
-" Open vim with Git.
+" Open vim with Git. Mapped to C-g in my fish config.
 function Git_or_Files()
     silent! !git rev-parse --is-inside-work-tree
     if v:shell_error == 0
@@ -147,12 +148,28 @@ function Git_or_Files()
     endif
 endfunction
 
+" Use FZF GFiles if we're in a repo, otherwise use Files
+function GFiles_or_Files()
+    silent! !git rev-parse --is-inside-work-tree
+    if v:shell_error == 0
+        :GFiles
+    else
+        :Files
+    endif
+endfunction
+
 " Fugitive Conflict Resolution
 nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>| " From the buffer on the left (Target)
 nnoremap gdl :diffget //3<CR>| " From the buffer on the right (Merge)
 
-" Git Blame
 nnoremap <leader>gb :G blame<CR>
+nnoremap <leader>gc :BCommits<CR>
+nnoremap <leader>gC :Commits<CR>
+
+" Prettier:
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_config_present = 1
+let g:prettier#exec_cmd_async = 1
 
 filetype plugin indent on

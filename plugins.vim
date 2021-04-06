@@ -67,6 +67,9 @@ Plug 'tpope/vim-dispatch'
 "     \ 'do': 'bash install.sh',
 "     \ }
 
+" JSON:
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
 " S Expressions:
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
