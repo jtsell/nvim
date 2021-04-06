@@ -55,9 +55,9 @@ let netrw_liststyle=3
 let g:netrw_keepdir=1
 
 " Navigating Buffers:
-nnoremap bn :bnext<CR>
-nnoremap bp :bprevious<CR>
-nnoremap bd :bdelete<CR>
+nnoremap gb :bnext<CR>
+nnoremap gB :bprevious<CR>
+" nnoremap <leader>bd :bdelete<CR>
 
 " Status Line:
 let g:airline_powerline_fonts = 1
