@@ -4,6 +4,9 @@ runtime plugins.vim
 " COC Config:
 runtime coc-config.vim
 
+" Theme:
+runtime theme.vim
+
 " Leader:
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -37,14 +40,15 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set copyindent
+let g:indentLine_setColors = 1
+let g:indentLine_color_gui = "#073642"
+let g:indentLine_char = '┊'
 
 " Miscellaneousness:
 set hidden
 set encoding=utf-8
 set nobackup
 set nowritebackup
-
-" Allow mouse usage
 set mouse=a
 
 " Yank to system clipboard also
@@ -59,36 +63,13 @@ nnoremap gb :bnext<CR>
 nnoremap gB :bprevious<CR>
 " nnoremap <leader>bd :bdelete<CR>
 
-" Status Line:
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-
-" Appearance: Solarized
-syntax on
-set termguicolors
-set bg=dark
-colorscheme NeoSolarized
-highlight clear LineNr "Leave the gutter transparent.
-let g:airline_theme = 'solarized'
-
-" Appearance: Gruvbox
-" syntax on
-" let g:gruvbox_contrast_dark = "medium"
-" let g:gruvbox_contrast_light = "medium"
-" set bg=dark
-" set bg=light
-" colorscheme gruvbox
-" set termguicolors
-" let g:airline_theme = 'gruvbox'
-
 " FZF:
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 nnoremap <leader>F :Rg<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>s :BLines<CR>
 nnoremap <leader>/ :BLines<CR>
+nnoremap <C-_> :BLines<CR>
 nnoremap <leader>: :Commands<CR>
 nnoremap <leader>; :Commands<CR>
 " nnoremap <leader>f :Files<CR>
@@ -111,28 +92,16 @@ vnoremap , ;
 " turn off search highlights
 nmap <leader><space> :nohlsearch<CR>
 
+" Ignore when I fatfinger the touchbar
+noremap <F1> <Nop>
+
 " Set shell to work around some fish bugs
 set shell=/bin/bash
 
-" ALE:
-" let g:ale_completion_enabled = 0
-" let g:ale_sign_column_always = 1
-" let g:airline#extensions#ale#enabled = 1
-
-" LSP:
-" let g:airline#extensions#languageclient#enabled = 1
-
-" Completion:
-" set omnifunc=syntaxcomplete#Complete
 " set completeopt+=menu
 " set completeopt+=noselect
 " set completeopt+=preview
 " set completeopt+=noinsert
-" let g:mucomplete#enable_auto_at_startup = 1
-" let g:mucomplete#completion_delay = 90
-" let g:mucomplete#reopen_immediately = 0
-
-" Automatically close the preview window.
 " autocmd CompleteDone * pclose
 
 " Git:
@@ -148,8 +117,15 @@ function Git_or_Files()
     endif
 endfunction
 
+" Open a fugitive command without splitting.
+function! Git_Nosplit(command)
+    execute "G " . a:command
+    :wincmd j
+    :q
+endfunction
+
 " Use FZF GFiles if we're in a repo, otherwise use Files
-function GFiles_or_Files()
+function! GFiles_or_Files()
     silent! !git rev-parse --is-inside-work-tree
     if v:shell_error == 0
         :GFiles
@@ -163,9 +139,11 @@ nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>| " From the buffer on the left (Target)
 nnoremap gdl :diffget //3<CR>| " From the buffer on the right (Merge)
 
+" Other git mappings
 nnoremap <leader>gb :G blame<CR>
 nnoremap <leader>gc :BCommits<CR>
 nnoremap <leader>gC :Commits<CR>
+nnoremap <leader>gs :call Git_Nosplit("show")<CR>
 
 " Prettier:
 let g:prettier#autoformat = 1

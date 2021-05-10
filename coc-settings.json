@@ -4,5 +4,6 @@
             "command": "clojure-lsp",
             "filetypes": ["clojure"]
         }
-    }
+    },
+    "suggest.autoTrigger": "none"
 }

@@ -34,7 +34,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Vim Vinegar: netrw enhancement
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
 
 " Taskwarrior:
 " Plug 'blindFS/vim-taskwarrior'
@@ -66,6 +66,11 @@ Plug 'tpope/vim-dispatch'
 "     \ 'branch': 'next',
 "     \ 'do': 'bash install.sh',
 "     \ }
+
+" Indentation Guides:
+" Plug 'thaerkh/vim-indentguides'
+Plug 'Yggdroot/indentLine'
+" Plug 'nathanaelkane/vim-indent-guides'
 
 " JSON:
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -112,9 +117,10 @@ Plug 'kannokanno/previm', {'for': ['plantuml', 'markdown']}
 
 " Python Plugins:
 " Connect to running jupyter consoles or notebooks.
-Plug 'jupyter-vim/jupyter-vim', {
-    \ 'for': 'python', 
-    \ 'commit': '195b500d3ca1c4d8b06d6199b0e02966c23e6b06'}
+Plug 'jupyter-vim/jupyter-vim'
+" Plug 'jupyter-vim/jupyter-vim', {
+"     \ 'for': 'python', 
+"     \ 'commit': '195b500d3ca1c4d8b06d6199b0e02966c23e6b06'}
 
 " Better Python indentation.
 Plug 'vim-scripts/indentpython', {'for': 'python'}
