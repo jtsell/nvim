@@ -6,6 +6,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Themes:
 " Solarized
 Plug 'overcache/NeoSolarized'
+
 " Gruvbox
 " Plug 'morhetz/gruvbox'
 
@@ -74,6 +75,9 @@ Plug 'Yggdroot/indentLine'
 
 " JSON:
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Javascript:
+Plug 'pangloss/vim-javascript'
 
 " S Expressions:
 Plug 'guns/vim-sexp'
