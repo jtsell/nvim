@@ -34,8 +34,10 @@ set guioptions=aiMr
 " Key bindings.
 nmap b <C-B><C-G>
 nmap q :q!<CR>
-nmap <Up> <C-Y>
-nmap <Down> <C-E>
+nnoremap <Up> <C-Y>
+nnoremap <C-P> <C-Y>
+nnoremap <Down> <C-E>
+nnoremap <C-N> <C-E>
 
 " To type the following line, type *two* C-V's followed by two spaces. This
 " is how you map the spacebar.
