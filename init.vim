@@ -1,3 +1,7 @@
+" Leader:
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
 " Vim Plug:
 runtime plugins.vim
 
@@ -7,9 +11,8 @@ runtime coc-config.vim
 " Theme:
 runtime theme.vim
 
-" Leader:
-nnoremap <SPACE> <Nop>
-let mapleader=" "
+" Telescopic Johnson:
+" runtime telescope.vim
 
 " UI Config:
 set nu
@@ -72,8 +75,8 @@ nnoremap <leader>/ :BLines<CR>
 nnoremap <C-_> :BLines<CR>
 nnoremap <leader>: :Commands<CR>
 nnoremap <leader>; :Commands<CR>
-" nnoremap <leader>f :Files<CR>
 nnoremap <leader>f :call GFiles_or_Files()<CR>
+" nnoremap <leader>f :Files<CR>
 
 " Move cursor to beginning or end of line.
 map <C-a> ^

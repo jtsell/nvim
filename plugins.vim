@@ -7,8 +7,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Solarized
 Plug 'overcache/NeoSolarized'
 
-" Gruvbox
-" Plug 'morhetz/gruvbox'
+" Gruvbox:
+Plug 'morhetz/gruvbox'
 
 " Airline: Fancy Status Bar
 Plug 'vim-airline/vim-airline'
@@ -26,9 +26,17 @@ Plug 'tpope/vim-repeat'
 " Surround: Use ysiw or cs in normal mode or S in visual mode.
 Plug 'tpope/vim-surround'
 
+" Devicons:
+Plug 'ryanoasis/vim-devicons'
+
 " FZF: Fuzzy finder integration.
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+" Telescope:
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Git:
 Plug 'tpope/vim-fugitive'
