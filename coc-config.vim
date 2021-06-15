@@ -40,13 +40,13 @@ let g:airline#extensions#coc#enabled = 1
 " nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
 " function! s:show_documentation()
 "   if (index(['vim','help'], &filetype) >= 0)
@@ -58,11 +58,13 @@ let g:airline#extensions#coc#enabled = 1
 "   endif
 " endfunction
 
+" Use K to show documentation in preview window.
+" Causes problems sometimes, but copy this to javascript ftplugin at least.
+" noremap <silent> K :call <SID>show_documentation()<CR>
+
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 " xmap <leader>f  <Plug>(coc-format-selected)
