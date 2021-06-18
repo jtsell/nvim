@@ -13,3 +13,5 @@ endfunction
 " Causes problems sometimes, but copy this to javascript ftplugin at least.
 noremap <silent> K :call <SID>show_documentation()<CR>
 
+set shiftwidth=2
+set tabstop=2
