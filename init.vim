@@ -82,9 +82,11 @@ nnoremap <leader>f :call GFiles_or_Files()<CR>
 map <C-a> ^
 map <C-e> $
 
-" jj to exit insert mode
+" Exit insert mode. Sorry Dijkstra.
 imap jj <esc>
 imap kk <esc>
+imap jk <esc>
+imap kj <esc>
 
 " Semicolons are colons, commas are semicolons.
 nnoremap ; :
