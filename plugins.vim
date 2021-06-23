@@ -141,4 +141,8 @@ Plug 'vim-scripts/indentpython', {'for': 'python'}
 
 " Better Python syntax highlighting.
 Plug 'kh3phr3n/python-syntax', {'for': 'python'}
+
+" Vimwiki:
+Plug 'vimwiki/vimwiki'
+
 call plug#end()
