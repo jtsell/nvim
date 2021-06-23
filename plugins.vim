@@ -85,7 +85,9 @@ Plug 'Yggdroot/indentLine'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Javascript:
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'yuezk/vim-js'
 
 " S Expressions:
 Plug 'guns/vim-sexp'
