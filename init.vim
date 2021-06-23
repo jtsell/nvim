@@ -149,6 +149,11 @@ nnoremap <leader>gb :G blame<CR>
 nnoremap <leader>gc :BCommits<CR>
 nnoremap <leader>gC :Commits<CR>
 nnoremap <leader>gs :call Git_Nosplit("show")<CR>
+nnoremap <leader>gg :call Git_Nosplit("")<CR>
+
+" Copy filenames
+nmap yf :let @*=expand("%")<CR>
+nmap yF :let @*=expand("%:p")<CR>
 
 " Prettier:
 let g:prettier#autoformat = 1
