@@ -81,6 +81,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'Yggdroot/indentLine'
 " Plug 'nathanaelkane/vim-indent-guides'
 
+" Wrapping:
+Plug 'andrewferrier/vim-wrapping-softhard'
+
 " JSON:
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
@@ -88,6 +91,8 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'yuezk/vim-js'
+" Plug 'kana/vim-textobj-function'
+" Plug 'haya14busa/vim-textobj-function-syntax'
 
 " S Expressions:
 Plug 'guns/vim-sexp'

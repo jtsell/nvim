@@ -11,6 +11,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#tabline#show_buffers = 1
 syntax on
 
 set background=dark
