@@ -2,6 +2,11 @@
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
+" Terminal Specific Config:
+if $TERM_PROGRAM == "iTerm.app"
+    runtime iterm2.vim
+endif
+
 " Vim Plug:
 runtime plugins.vim
 
@@ -150,10 +155,11 @@ nnoremap <leader>gc :BCommits<CR>
 nnoremap <leader>gC :Commits<CR>
 nnoremap <leader>gs :call Git_Nosplit("show")<CR>
 nnoremap <leader>gg :call Git_Nosplit("")<CR>
+nnoremap <leader>gl :call Git_Nosplit("log")<CR>
 
 " Copy filenames
-nmap yf :let @*=expand("%")<CR>
-nmap yF :let @*=expand("%:p")<CR>
+nmap <leader>yf :let @*=expand("%")<CR>| " Yank filename from working directory.
+nmap <leader>yF :let @*=expand("%:p")<CR>| " Yank full path filename.
 
 " Prettier:
 let g:prettier#autoformat = 1
