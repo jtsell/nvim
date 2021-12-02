@@ -1,14 +1,17 @@
 call plug#begin() 
 
+" Plug:
+Plug 'junegunn/vim-plug'
+
 " COC:
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themes:
 " Solarized
 Plug 'overcache/NeoSolarized'
-
-" Gruvbox:
+" Gruvbox
 Plug 'morhetz/gruvbox'
+Plug 'shaunsingh/solarized.nvim'
 
 " Airline: Fancy Status Bar
 Plug 'vim-airline/vim-airline'
@@ -77,21 +80,32 @@ Plug 'tpope/vim-dispatch'
 "     \ }
 
 " Indentation Guides:
+Plug 'lukas-reineke/indent-blankline.nvim'
 " Plug 'thaerkh/vim-indentguides'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 " Plug 'nathanaelkane/vim-indent-guides'
 
 " Wrapping:
 Plug 'andrewferrier/vim-wrapping-softhard'
 
+" Auto Pairs: Load this for any type *except* for clojure (redundant with Parinfer)
+Plug 'jiangmiao/auto-pairs', { 'for': [] }
+augroup plug_xtype
+  autocmd FileType * if expand('<amatch>') != 'clojure' | call plug#load('auto-pairs') | execute 'autocmd! plug_xtype' | endif
+augroup END
+
 " JSON:
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Javascript:
-" Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+
+" These don't work:
 " Plug 'kana/vim-textobj-function'
+" Plug 'thinca/vim-textobj-function-javascript'
+" Plug 'pangloss/vim-javascript' Deprecated
+" Plug 'mxw/vim-jsx' Deprecated
 " Plug 'haya14busa/vim-textobj-function-syntax'
 
 " S Expressions:
@@ -104,9 +118,9 @@ Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
 " Clojure:
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+" Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
-" Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
 
 " Rainbow Parens:
@@ -150,4 +164,33 @@ Plug 'kh3phr3n/python-syntax', {'for': 'python'}
 " Vimwiki:
 Plug 'vimwiki/vimwiki'
 
+" GitHub CoPilot For Vim:
+" Plug 'github/copilot.vim'
+
+" CheatSh For Vim:
+" Plug 'dbeniamine/cheat.sh-vim'
+" Plug 'RishabhRD/popfix'
+" Plug 'RishabhRD/nvim-cheat.sh'
+
+" Indentwise:
+Plug 'jeetsukumaran/vim-indentwise'
+
 call plug#end()
+
+function! s:plug_help_sink(line)
+  let dir = g:plugs[a:line].dir
+  for pat in ['doc/*.txt', 'README.md']
+    let match = get(split(globpath(dir, pat), "\n"), 0, '')
+    if len(match)
+      execute 'tabedit' match
+      return
+    endif
+  endfor
+  tabnew
+  execute 'Explore' dir
+endfunction
+
+command! PlugHelp call fzf#run(fzf#wrap({
+  \ 'source': sort(keys(g:plugs)),
+  \ 'sink':   function('s:plug_help_sink')}))
+

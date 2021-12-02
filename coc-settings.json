@@ -5,5 +5,8 @@
             "filetypes": ["clojure"]
         }
     },
-    "suggest.autoTrigger": "none"
+    "eslint": {
+        "alwaysShowStatus": true,
+        "packageManager": "yarn"
+    }
 }

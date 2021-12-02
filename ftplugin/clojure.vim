@@ -1,11 +1,12 @@
 " Clojure Settings
 
-" Cljfmt: Doesn't seem to respect autosave setting.
+" Cljfmt: I don't know why these don't work:
 " let g:clojure_align_multiline_strings = 1
 " let g:clojure_align_subforms = 1
 " let g:clj_fmt_autosave = 0
 
-RainbowParentheses
-" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+" nnoremap <buffer> <leader>p :Cljfmt<CR>
+" nmap <leader>p <Plug>(coc-format-buffer)
+nnoremap <buffer> <leader>p :call CocAction('format')<CR>
 
-set foldmethod=indent
+RainbowParentheses

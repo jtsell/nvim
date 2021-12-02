@@ -20,4 +20,7 @@ set termguicolors
 colorscheme NeoSolarized
 " colorscheme gruvbox
 let g:airline_theme = 'solarized'
+" hi normal ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE
 highlight clear LineNr "Leave the gutter transparent.
+

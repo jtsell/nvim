@@ -11,7 +11,10 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 " Use K to show documentation in preview window.
 " Causes problems sometimes, but copy this to javascript ftplugin at least.
-noremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <buffer><silent> K :call <SID>show_documentation()<CR>
 
-set shiftwidth=2
-set tabstop=2
+setlocal shiftwidth=2
+setlocal tabstop=2
+
+" Run current test file. Only works when writing tests.
+nnoremap <buffer> <leader>t :!yarn test-one %<CR>

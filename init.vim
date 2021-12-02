@@ -19,6 +19,9 @@ runtime theme.vim
 " Telescopic Johnson:
 " runtime telescope.vim
 
+" Cheat:
+runtime cheat.vim
+
 " UI Config:
 set nu
 set relativenumber
@@ -41,16 +44,23 @@ set foldmethod=syntax
 keepmarks
 " set foldmethod=marker
 
-" Tabs:
+" Indentation:
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
 set copyindent
-let g:indentLine_setColors = 1
-let g:indentLine_color_gui = "#073642"
-let g:indentLine_char = '┊'
+let g:indentLine_char = '│'
+" let g:indentLine_char = '┊'
+" let g:indentLine_char = '¦'
+
+" let g:indentLine_setColors = 0
+" let g:indent_blankline_show_first_indent_level = v:false
+" let g:indent_blankline_show_end_of_line = v:true
+
+" highlight IndentBlanklineChar guifg=#586e75 gui=nocombine
+highlight IndentBlanklineChar guifg=#073642 gui=nocombine
 
 " Miscellaneousness:
 set hidden
@@ -69,10 +79,11 @@ let g:netrw_keepdir=1
 " Navigating Buffers:
 nnoremap gb :bnext<CR>
 nnoremap gB :bprevious<CR>
-" nnoremap <leader>bd :bdelete<CR>
+nnoremap BD :bd<CR>
 
 " FZF:
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+let g:fzf_buffers_jump = 1
 nnoremap <leader>F :Rg<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>s :BLines<CR>
@@ -81,7 +92,7 @@ nnoremap <C-_> :BLines<CR>
 nnoremap <leader>: :Commands<CR>
 nnoremap <leader>; :Commands<CR>
 nnoremap <leader>f :call GFiles_or_Files()<CR>
-" nnoremap <leader>f :Files<CR>
+nnoremap <leader>` :Marks<CR>
 
 " Move cursor to beginning or end of line.
 map <C-a> ^
@@ -104,6 +115,10 @@ nmap <leader><space> :nohlsearch<CR>
 
 " Ignore when I fatfinger the touchbar
 noremap <F1> <Nop>
+
+" Cool, but this made things weird
+" Enter -> :
+" nnoremap <CR> :
 
 " Set shell to work around some fish bugs
 set shell=/bin/bash
@@ -145,7 +160,7 @@ function! GFiles_or_Files()
 endfunction
 
 " Fugitive Conflict Resolution
-nnoremap <leader>gd :Gvdiffsplit!<CR>
+nnoremap <leader>gd :Gdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>| " From the buffer on the left (Target)
 nnoremap gdl :diffget //3<CR>| " From the buffer on the right (Merge)
 
@@ -166,4 +181,20 @@ let g:prettier#autoformat = 1
 let g:prettier#autoformat_config_present = 1
 let g:prettier#exec_cmd_async = 1
 
-filetype plugin indent on
+let g:AutoPairsMapCR = 0
+
+filetype plugin on
+
+" Cljfmt: For some reason these don't work in ftplugins/clojure.vim
+let g:clojure_align_multiline_strings = 1
+let g:clojure_align_subforms = 1
+let g:clj_fmt_autosave = 0
+
+let main_wiki = {}
+let main_wiki.path = '~/Documents/yellowdig/wiki/'
+
+let journal_wiki = {}
+let journal_wiki.path = '~/Documents/.journal/'
+let g:vimwiki_list = [main_wiki, journal_wiki]
+
+let g:copilot_disabled = v:true
