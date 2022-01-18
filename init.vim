@@ -20,7 +20,7 @@ runtime theme.vim
 " runtime telescope.vim
 
 " Cheat:
-runtime cheat.vim
+" runtime cheat.vim
 
 " UI Config:
 set nu
@@ -81,9 +81,10 @@ nnoremap gb :bnext<CR>
 nnoremap gB :bprevious<CR>
 nnoremap BD :bd<CR>
 
-" FZF:
+
+FZF:
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-let g:fzf_buffers_jump = 1
+let g:fzf_buffers_jump = 0
 nnoremap <leader>F :Rg<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>s :BLines<CR>
@@ -94,7 +95,7 @@ nnoremap <leader>; :Commands<CR>
 nnoremap <leader>f :call GFiles_or_Files()<CR>
 nnoremap <leader>` :Marks<CR>
 
-" Move cursor to beginning or end of line.
+Move cursor to beginning or end of line.
 map <C-a> ^
 map <C-e> $
 
@@ -150,14 +151,14 @@ function! Git_Nosplit(command)
 endfunction
 
 " Use FZF GFiles if we're in a repo, otherwise use Files
-function! GFiles_or_Files()
-    silent! !git rev-parse --is-inside-work-tree
-    if v:shell_error == 0
-        :GFiles
-    else
-        :Files
-    endif
-endfunction
+" function! GFiles_or_Files()
+"     silent! !git rev-parse --is-inside-work-tree
+"     if v:shell_error == 0
+"         :GFiles
+"     else
+"         :Files
+"     endif
+" endfunction
 
 " Fugitive Conflict Resolution
 nnoremap <leader>gd :Gdiffsplit!<CR>
@@ -198,3 +199,4 @@ let journal_wiki.path = '~/Documents/.journal/'
 let g:vimwiki_list = [main_wiki, journal_wiki]
 
 let g:copilot_disabled = v:true
+

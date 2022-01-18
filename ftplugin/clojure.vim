@@ -10,3 +10,5 @@
 nnoremap <buffer> <leader>p :call CocAction('format')<CR>
 
 RainbowParentheses
+nnoremap <buffer> crr :Require<CR>
+

@@ -1,7 +1,8 @@
 call plug#begin() 
 
 " Solarized Theme:
-Plug 'overcache/NeoSolarized'
+" Plug 'overcache/NeoSolarized'
+Plug 'morhetz/gruvbox'
 
 " Rainbow Parens:
 Plug 'junegunn/rainbow_parentheses.vim', {'do': ':RainbowParentheses'}
@@ -18,6 +19,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " JSON:
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Git:
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " Theme:

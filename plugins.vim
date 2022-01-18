@@ -8,10 +8,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themes:
 " Solarized
-Plug 'overcache/NeoSolarized'
+" Plug 'overcache/NeoSolarized'
+" Plug 'shaunsingh/solarized.nvim'
+
 " Gruvbox
 Plug 'morhetz/gruvbox'
-Plug 'shaunsingh/solarized.nvim'
 
 " Airline: Fancy Status Bar
 Plug 'vim-airline/vim-airline'
@@ -31,15 +32,17 @@ Plug 'tpope/vim-surround'
 
 " Devicons:
 Plug 'ryanoasis/vim-devicons'
+" Plug 'kyazdani42/nvim-web-devicons'
 
 " FZF: Fuzzy finder integration.
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'ibhagwan/fzf-lua'
 
 " Telescope:
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 
 " Git:
 Plug 'tpope/vim-fugitive'
@@ -71,7 +74,7 @@ Plug 'tpope/vim-dispatch'
 " Plug 'lifepillar/vim-mucomplete' 
 
 " ALE: CoC does it better.
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale', { 'for': [] }
 
 " LanguageClient: CoC *still* does it better.
 " Plug 'autozimu/LanguageClient-neovim', {
@@ -115,6 +118,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Parinfer:
 " Plug 'bhurlow/vim-parinfer' 
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+" Plug 'gpanders/nvim-parinfer'
 
 " Clojure:
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}

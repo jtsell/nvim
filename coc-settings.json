@@ -4,9 +4,5 @@
             "command": "clojure-lsp",
             "filetypes": ["clojure"]
         }
-    },
-    "eslint": {
-        "alwaysShowStatus": true,
-        "packageManager": "yarn"
     }
 }
