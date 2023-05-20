@@ -1,28 +1,30 @@
-local function lsp_map(binding, command)
-  local full_command = '<cmd>lua vim.' .. command .. '<cr>'
-  vim.api.nvim_buf_set_keymap(0, 'n', binding, full_command, {noremap = true, silent = true})
+local custom_lsp_attach = function(client, bufnr)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', '<leader>k', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
+  -- vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, bufopts)
+  if client.server_capabilities.documentFormattingProvider then
+    vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end, bufopts)
+  end
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gD', "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
+  vim.keymap.set('n', 'ge', vim.diagnostic.setloclist, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- client.server_capabilities.documentFormattingProvider = true
 end
 
-local custom_lsp_attach = function(client)
-  lsp_map('<C-k>', 'lsp.buf.code_action()')
-  lsp_map('<Leader>p', 'lsp.buf.formatting()')
-  lsp_map('<Leader>rn', 'lsp.buf.rename()')
-  lsp_map('K', 'lsp.buf.hover()')
-  -- lsp_map('K', 'lsp.buf.signature_help()')
-  lsp_map('gD', 'lsp.buf.declaration()')
-  lsp_map('gI', 'lsp.buf.implementation()')
-  lsp_map('gd', 'lsp.buf.definition()')
-  lsp_map('ge', 'diagnostic.setloclist()')
-  lsp_map('gr', 'lsp.buf.references()')
-  vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- Disable signs
-    -- signs = false,
-  }
-)
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     -- Disable signs
+--     -- signs = false,
+--   }
+-- )
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
@@ -41,7 +43,7 @@ local config = {
   signs = {
     active = signs,
   },
-  update_in_insert = true,
+  update_in_insert = false,
   underline = true,
   severity_sort = true,
   float = {
@@ -49,50 +51,52 @@ local config = {
     focusable = false,
     style = "minimal",
     border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
+    source = "never",
+    -- header = "",
+    -- prefix = "",
   },
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
- border = "rounded",
+ config
+ -- border = "rounded",
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
- border = "rounded",
+ config
+ -- border = "rounded",
 })
 
 vim.diagnostic.config(config)
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-require'lspconfig'.sumneko_lua.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-  on_attach = custom_lsp_attach
-}
+-- local runtime_path = vim.split(package.path, ';')
+-- table.insert(runtime_path, "lua/?.lua")
+-- table.insert(runtime_path, "lua/?/init.lua")
+-- require'lspconfig'.sumneko_lua.setup {
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--         version = 'LuaJIT',
+--         -- Setup your lua path
+--         path = runtime_path,
+--       },
+--       diagnostics = {
+--         -- Get the language server to recognize the `vim` global
+--         globals = {'vim'},
+--       },
+--       workspace = {
+--         -- Make the server aware of Neovim runtime files
+--         library = vim.api.nvim_get_runtime_file("", true),
+--       },
+--       -- Do not send telemetry data containing a randomized but unique identifier
+--       telemetry = {
+--         enable = false,
+--       },
+--     },
+--   },
+--   on_attach = custom_lsp_attach
+-- }
 
 require'lspconfig'.clojure_lsp.setup{
   cmd = { "clojure-lsp" },
@@ -104,18 +108,61 @@ require'lspconfig'.clojure_lsp.setup{
 
 require'lspconfig'.eslint.setup{
   cmd = { "vscode-eslint-language-server", "--stdio" },
+  filetypes = {"javascript"},
   -- cmd = { "eslint", "--stdin" },
   settings = {
     -- for eslint, should be ignored by other language servers
     packageManager = "yarn"
   },
+  -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  codeAction = {
+    disableRuleComment = {
+      enable = false,
+      location = "separateLine"
+    },
+    showDocumentation = {
+      enable = true
+    }
+  },
   -- packageManager = "yarn",
-  -- on_init = function(client, initialize_result)
-  --   client.resolved_capabilities.document_formatting = true
-  -- end
+  -- on_init = function(client, initialize_result) client.resolved_capabilities.document_formatting = true; end,
   on_attach = custom_lsp_attach
 }
 
 require'lspconfig'.tsserver.setup{
+  filetypes = {"typescript", "javascript"},
+  -- client.server_capabilities.documentFormattingProvider = false
+  on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr); end
+}
+
+require'lspconfig'.jsonls.setup{
   on_attach = custom_lsp_attach
 }
+require'lspconfig'.lua_ls.setup {
+  on_attach = custom_lsp_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+-- require'lspconfig'.graphql.setup{
+--   on_attach = custom_lsp_attach
+-- }
+

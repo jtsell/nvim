@@ -118,6 +118,6 @@ TK_Map('<Leader>zg', 'search_notes()')
 TK_Map('<Leader>zz', 'follow_link()')
 TK_Map('<Leader>zn', 'new_note()')
 TK_Map('<Leader>zt', 'show_tags()')
-TK_Map('<C-Space>', 'toggle_todo()')
+-- TK_Map('<C-Space>', 'toggle_todo()')
 
 

@@ -1,7 +1,8 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
 end
 
 vim.cmd([[
@@ -12,30 +13,48 @@ vim.cmd([[
 ]])
 
 return require('packer').startup(function(use)
-  -- My plugins here
   use 'wbthomason/packer.nvim'
   use 'morhetz/gruvbox'
+  use 'overcache/NeoSolarized'
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-  use  'tpope/vim-commentary'
-  use  'tpope/vim-surround'
-  use  'tpope/vim-repeat'
+  use 'tpope/vim-commentary'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-repeat'
+  -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[require('treesitter_config')]], commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0'}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[require('treesitter_config')]] }
-  use { 'neovim/nvim-lspconfig', config = [[require('lsp')]]}
-  use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}, config = [[require('telescope_config')]]}
+  use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
+  use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } }, config = [[require('telescope_config')]] }
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
   use { 'Olical/conjure', config = [[require('conjure_config')]] }
-  use 'venantius/vim-cljfmt'
-  use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]]}
+  -- use 'venantius/vim-cljfmt'
+  use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
   use 'tpope/vim-sexp-mappings-for-regular-people'
   use 'junegunn/rainbow_parentheses.vim'
   use 'lukas-reineke/indent-blankline.nvim'
   -- use 'airblade/vim-gitgutter'
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('gitsigns_config')]]}
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('gitsigns_config')]] }
   use { 'tpope/vim-fugitive', config = [[require('fugitive_config')]] }
-  use {'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
+  use { 'tpope/vim-rhubarb', requires = { 'tpope/vim-fugitive' } }
+  use { 'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
+  use { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup { disable_filetype = {
+      'TelescopePrompt' } } end }
+  use { 'sbdchd/neoformat' }
+  use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", requires =
+  "nvim-treesitter/nvim-treesitter" }
+  use { 'hrsh7th/nvim-cmp',
+    requires = {
+      { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-path' },
+      { 'neovim/nvim-lspconfig' },
+      { 'saadparwaiz1/cmp_luasnip' },
+    },
+    config = [[require('completion_config')]]
+  }
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end

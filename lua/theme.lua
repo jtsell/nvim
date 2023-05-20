@@ -13,7 +13,8 @@ require('lualine').setup({
     lualine_a = {{'tabs', mode = 2, max_length = vim.o.columns/2}},
     lualine_b = {},
     lualine_c = {},
-    lualine_x = {'buffers'},
+    -- lualine_x = {'buffers'},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },

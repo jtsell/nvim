@@ -7,18 +7,24 @@ endfunction
 ]])
 
 
-function Map (binding, command)
+function nmap (binding, command)
   vim.api.nvim_set_keymap('n', binding, command, {noremap=true})
+end
+
+function vmap (binding, command)
+  vim.api.nvim_set_keymap('v', binding, command, {noremap=true})
 end
 
 -- map('<leader>gC', ':Commits<CR>')
 -- nnoremap <leader>gb :G blame<CR>
 -- nnoremap <leader>gc :BCommits<CR>
 -- nnoremap <leader>gd :Gdiffsplit!<CR>
-Map('<Leader>gg', ':call Git_Nosplit("")<CR>')
-Map('<Leader>gl', ':call Git_Nosplit("log")<CR>')
-Map('<Leader>gs', ':call Git_Nosplit("show")<CR>')
-Map('<Leader>gb', ':G blame<CR>')
+nmap('<Leader>gg', ':call Git_Nosplit("")<CR>')
+nmap('<Leader>gl', ':call Git_Nosplit("log")<CR>')
+nmap('<Leader>gs', ':call Git_Nosplit("show")<CR>')
+nmap('<Leader>gb', ':G blame<CR>')
+nmap('<Leader>gB', ':GBrowse<CR>')
+vmap('<Leader>gB', ':\'<,\'>GBrowse<CR>')
 -- Map('<leader>gd', ':Gdiffsplit!<CR>')
 
 -- nnoremap <leader>gs :call Git_Nosplit("show")<CR>

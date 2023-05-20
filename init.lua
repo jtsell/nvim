@@ -18,69 +18,78 @@ local map = vim.api.nvim_set_keymap
 -- nnoremap <leader>gs :call Git_Nosplit("show")<CR>
 -- nnoremap gdh :diffget //2<CR>| " From the buffer on the left (Target)
 -- nnoremap gdl :diffget //3<CR>| " From the buffer on the right (Merge)
---set completeopt+=menu
+-- set completeopt+=menu
 --set completeopt+=noselect
 --set completeopt+=preview
 --set completeopt+=noinsert
 -- o.nobackup=true
 -- o.nowritebackup=true
 
-o.autoindent=true
-o.clipboard='unnamedplus'
-o.cmdheight=2
-o.copyindent=true
-o.encoding='utf-8'
-o.expandtab=true
-o.foldenable=true
-o.foldexpr='nvim_treesitter#foldexpr()'
-o.foldlevelstart=10
-o.foldmethod='expr'
-o.foldnestmax=10
-o.hidden=true
-o.ignorecase=true
-o.incsearch=true
-o.mouse='a'
-o.nu=true
-o.relativenumber=true
-o.shiftwidth=2
-o.showcmd=true
-o.showmatch=true
-o.signcolumn='yes'
-o.smartcase=true
-o.smartindent=true
-o.smarttab=true
-o.softtabstop=2
-o.tabstop=2
-o.wildmenu=true
+o.autoindent = true
+o.clipboard = 'unnamedplus'
+o.cmdheight = 2
+o.copyindent = true
+o.encoding = 'utf-8'
+o.expandtab = true
+o.foldenable = true
+o.foldexpr = 'nvim_treesitter#foldexpr()'
+o.foldlevelstart = 10
+o.foldmethod = 'expr'
+o.foldnestmax = 10
+o.hidden = true
+o.ignorecase = true
+o.incsearch = true
+o.mouse = 'a'
+-- o.nowrap = true
+o.nu = true
+o.relativenumber = true
+o.shiftwidth = 2
+o.showcmd = true
+o.showmatch = true
+o.signcolumn = 'yes'
+o.smartcase = true
+o.smartindent = true
+o.smarttab = true
+o.softtabstop = 2
+o.tabstop = 2
+o.wildmenu = true
 
 g.AutoPairsMapCR = 0
 g.clj_fmt_autosave = 0
 g.clojure_align_multiline_strings = 1
 g.clojure_align_subforms = 1
 g.indentLine_char = '│'
-g.mapleader=" "
-g.netrw_keepdir=1
-g.markdown_fenced_languages = {'clojure'}
+g.mapleader = " "
+g.netrw_keepdir = 1
+g.markdown_fenced_languages = { 'clojure' }
 
-map('n', '<SPACE>', '<Nop>', {noremap=true})
-map('i', 'jj', '<esc>', {noremap=true})
-map('i', 'jk', '<esc>', {noremap=true})
-map('i', 'kj', '<esc>', {noremap=true})
-map('i', 'kk', '<esc>', {noremap=true})
-map('n', ',', ';', {noremap=true})
-map('n', ';', ':', {noremap=true})
-map('n', '<C-a>', '^', {noremap=true})
-map('n', '<C-e>', '$', {noremap=true})
-map('n', '<F1>', '<Nop>', {noremap=true})
-map('n', '<SPACE>', '<Nop>', {noremap=true})
-map('n', '<leader><space>', ':nohlsearch<CR>', {noremap=true})
-map('n', '<leader>yF', ':let @*=expand("%:p")<CR>|', {noremap=true})
-map('n', '<leader>yf', ':let @*=expand("%")<CR>|', {noremap=true})
-map('n', 'BD', ':bd<CR>', {noremap=true})
-map('n', 'gB', ':bprevious<CR>', {noremap=true})
-map('n', 'gb', ':bnext<CR>', {noremap=true})
-map('v', ',', ';', {noremap=true})
-map('v', ';', ':', {noremap=true})
+map('n', '<SPACE>', '<Nop>', { noremap = true })
+map('i', 'jj', '<esc>', { noremap = true })
+map('i', 'jk', '<esc>', { noremap = true })
+map('i', 'kj', '<esc>', { noremap = true })
+map('i', 'kk', '<esc>', { noremap = true })
+map('n', ',', ';', { noremap = true })
+map('n', ';', ':', { noremap = true })
+map('n', '<C-a>', '^', { noremap = true })
+map('n', '<C-e>', '$', { noremap = true })
+map('n', '<F1>', '<Nop>', { noremap = true })
+map('n', '<SPACE>', '<Nop>', { noremap = true })
+map('n', '<leader><space>', ':nohlsearch<CR>', { noremap = true })
+map('n', '<leader>yF', ':let @*=expand("%:p")<CR>|', { noremap = true })
+map('n', '<leader>yf', ':let @*=expand("%")<CR>|', { noremap = true })
+map('n', 'BD', ':bd<CR>', { noremap = true })
+map('n', 'gB', ':bprevious<CR>', { noremap = true })
+map('n', 'gb', ':bnext<CR>', { noremap = true })
+map('v', ',', ';', { noremap = true })
+map('v', ';', ':', { noremap = true })
 
+map('n', '<localleader>po', ":ConjureEval (require 'portal.api) (portal.api/tap) (portal.api/open {:theme :portal.colors/gruvbox :app false})<CR>",
+  { noremap = true })
 
-map('n', '<localleader>po', ":ConjureEval (require 'portal.api) (portal.api/tap) (portal.api/open)<CR>", {noremap=true})
+vim.cmd([[command! Less runtime pager.vim]])
+-- vim.cmd([[
+--   autocmd BufEnter * lua require'completion'.on_attach()
+--   set completeopt=menuone,noinsert,noselect
+--   imap <silent> <c-p> <Plug>(completion_trigger)
+-- ]])
+-- vim.api.nvim_add_user_command('Less', require 'pager')

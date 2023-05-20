@@ -1,8 +1,6 @@
--- You dont need to set any of these options. These are the default ones. Only
--- the loading is important
 require('telescope').setup {
 -- { defaults = { file_ignore_patterns = {"node_modules"} } }
-  defaults = { file_ignore_patterns = {"^trees/"}},
+  -- defaults = { file_ignore_patterns = {"trees/"}},
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
