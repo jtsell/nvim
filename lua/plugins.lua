@@ -37,8 +37,10 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-fugitive', config = [[require('fugitive_config')]] }
   use { 'tpope/vim-rhubarb', requires = { 'tpope/vim-fugitive' } }
   use { 'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
-  use { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup { disable_filetype = {
-      'TelescopePrompt' } } end }
+  use { 'windwp/nvim-autopairs', config = function()
+    require("nvim-autopairs").setup { disable_filetype = {
+      'TelescopePrompt' } }
+  end }
   use { 'sbdchd/neoformat' }
   use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", requires =
   "nvim-treesitter/nvim-treesitter" }
@@ -48,9 +50,11 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-path' },
       { 'neovim/nvim-lspconfig' },
-      { 'saadparwaiz1/cmp_luasnip' },
+      { 'paterjason/cmp-conjure' },
+      { 'saadparwaiz1/cmp_luasnip' }
     },
     config = [[require('completion_config')]]
   }
