@@ -34,6 +34,8 @@ local cmp_prev = function(fallback)
 end
 
 cmp.setup({
+  completion = { autocomplete = false },
+
   -- window = {
   --   completion = cmp.config.window.bordered(),
   --   documentation = cmp.config.window.bordered(),
@@ -77,18 +79,19 @@ cmp.setup({
   })
 })
 
-cmp.setup.buffer {
-  completion = {
-    autocomplete = false
-  }
-}
+-- cmp.config.completion.autocomplete = false
 
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
-})
+-- cmp.config.completion.autocomplete = false,
+-- cmp.setup.buffer {
+--   completion.autocomplete = false
+-- }
+
+-- cmp.setup.cmdline({ '/', '?' }, {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = 'buffer' }
+--   }
+-- })
 
 -- cmp.setup.cmdline(':', {
 --   mapping = cmp.mapping.preset.cmdline(),

@@ -22,11 +22,11 @@ return require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[require('treesitter_config')]], commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0'}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[require('treesitter_config')]] }
-  use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } }, config = [[require('telescope_config')]] }
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
   use { 'Olical/conjure', config = [[require('conjure_config')]] }
+  use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
   -- use 'venantius/vim-cljfmt'
   use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
   use 'tpope/vim-sexp-mappings-for-regular-people'
@@ -47,13 +47,13 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/nvim-cmp',
     requires = {
       { 'L3MON4D3/LuaSnip' },
+      { 'paterjason/cmp-conjure' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-cmdline' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-path' },
       { 'neovim/nvim-lspconfig' },
-      { 'paterjason/cmp-conjure' },
       { 'saadparwaiz1/cmp_luasnip' }
     },
     config = [[require('completion_config')]]

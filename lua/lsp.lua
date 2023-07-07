@@ -103,7 +103,7 @@ require'lspconfig'.clojure_lsp.setup{
   -- cmd = { "kondo" },
   filetypes = { "clojure", "edn" },
   -- root_dir = root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git")
-  on_attach = custom_lsp_attach
+  on_attach = function (client, bufnr) client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr); end
 }
 
 require'lspconfig'.eslint.setup{
