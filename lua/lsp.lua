@@ -98,12 +98,20 @@ vim.diagnostic.config(config)
 --   on_attach = custom_lsp_attach
 -- }
 
+local yd_root_pattern = function (x)
+  local git_root = util.root_pattern(".git")(x)
+  if git_root then
+    return git_root .. "/yd"
+  else
+    return util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn")
+  end
+end
+
 require'lspconfig'.clojure_lsp.setup{
   cmd = { "clojure-lsp" },
-  -- cmd = { "kondo" },
   filetypes = { "clojure", "edn" },
-  -- root_dir = root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", ".git")
-  on_attach = function (client, bufnr) client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr); end
+  root_dir = yd_root_pattern,
+  on_attach = function (client, bufnr) client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr); end,
 }
 
 require'lspconfig'.eslint.setup{
@@ -140,6 +148,7 @@ require'lspconfig'.jsonls.setup{
 }
 require'lspconfig'.lua_ls.setup {
   on_attach = custom_lsp_attach,
+  root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
   settings = {
     Lua = {
       runtime = {
