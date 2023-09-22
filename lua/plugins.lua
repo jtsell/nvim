@@ -20,27 +20,21 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
-  -- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[require('treesitter_config')]], commit = '4cccb6f494eb255b32a290d37c35ca12584c74d0'}
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = [[require('treesitter_config')]] }
   use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } }, config = [[require('telescope_config')]] }
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
   use { 'Olical/conjure', config = [[require('conjure_config')]] }
   use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
-  -- use 'venantius/vim-cljfmt'
   use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
   use 'tpope/vim-sexp-mappings-for-regular-people'
   use 'junegunn/rainbow_parentheses.vim'
   use 'lukas-reineke/indent-blankline.nvim'
-  -- use 'airblade/vim-gitgutter'
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('gitsigns_config')]] }
   use { 'tpope/vim-fugitive', config = [[require('fugitive_config')]] }
   use { 'tpope/vim-rhubarb', requires = { 'tpope/vim-fugitive' } }
   use { 'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
-  use { 'windwp/nvim-autopairs', config = function()
-    require("nvim-autopairs").setup { disable_filetype = {
-      'TelescopePrompt' } }
-  end }
+  use { 'windwp/nvim-autopairs', config = [[require('pairs_config')]] }
   use { 'sbdchd/neoformat' }
   use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", requires =
   "nvim-treesitter/nvim-treesitter" }
