@@ -1,4 +1,9 @@
-require('nvim-treesitter.configs').setup {
+vim.treesitter.language.register("clojure", "edn")
+require 'nvim-treesitter.configs'.setup {
+  ensure_installed = { "lua", "vim", "vimdoc", "query", "clojure", "tsx", "java", "javascript", "typescript", "graphql", "markdown", "markdown_inline" },
+  sync_install = false,
+  auto_install = true,
+  additional_vim_regex_highlighting = false,
   highlight = {
     enable = true,
     -- disable = { "c", "rust" },
@@ -7,13 +12,7 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     -- disable = { "c", "rust" },
     -- module_path = "nvim-treesitter.indent"
-  }
-}
-
-vim.treesitter.language.register("markdown", "telekasten")
-vim.treesitter.language.register("clojure", "edn")
-
-require'nvim-treesitter.configs'.setup {
+  },
   textobjects = {
     select = {
       enable = true,
@@ -43,7 +42,7 @@ require'nvim-treesitter.configs'.setup {
       -- mapping query_strings to modes.
       selection_modes = {
         ['@parameter.outer'] = 'v', -- charwise
-        ['@function.outer'] = 'V', -- linewise
+        ['@function.outer'] = 'V',  -- linewise
         ['@class.outer'] = '<c-v>', -- blockwise
       },
       -- If you set this to `true` (default is `false`) then any textobject is
