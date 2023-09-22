@@ -1,3 +1,4 @@
+local util = require('lspconfig.util')
 local custom_lsp_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.code_action, bufopts)
