@@ -1,12 +1,26 @@
 require('telescope').setup {
--- { defaults = { file_ignore_patterns = {"node_modules"} } }
+  -- { defaults = { file_ignore_patterns = {"node_modules"} } }
   -- defaults = { file_ignore_patterns = {"trees/"}},
   extensions = {
     fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case," the default case_mode is "smart_case"
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case," the default case_mode is "smart_case"
+    }
+  },
+
+  -- Copied from reddit: 
+  -- https://www.reddit.com/r/neovim/comments/qspemc/close_buffers_with_telescope/
+  defaults = {
+    mappings = {
+      n = {
+        ['<c-d>'] = require('telescope.actions').delete_buffer
+      }, -- n
+      i = {
+        ["<C-h>"] = "which_key",
+        ['<c-d>'] = require('telescope.actions').delete_buffer
+      } -- i
     }
   }
 }
@@ -17,9 +31,9 @@ require('telescope').load_extension('fzf')
 local utils = require "telescope.utils"
 local map = vim.api.nvim_set_keymap
 
-Telescope_map = function (binding, command)
+Telescope_map = function(binding, command)
   local full_command = (':lua require("telescope.builtin").' .. command .. '<CR>')
-  vim.api.nvim_set_keymap('n', binding, full_command, {noremap=true})
+  vim.api.nvim_set_keymap('n', binding, full_command, { noremap = true })
 end
 
 -- map('n', '<Leader>ff', ':lua GFiles_or_Files()<CR>', {noremap=true})
@@ -36,6 +50,12 @@ Telescope_map('<Leader>fk', 'keymaps{}')
 Telescope_map('<Leader>fm', 'marks{}')
 Telescope_map('<Leader>fp', 'builtin{}')
 Telescope_map('<Leader>ft', 'filetypes{}')
-Telescope_map('<leader>/', 'current_buffer_fuzzy_find{}')
-Telescope_map('<leader>f/', 'current_buffer_fuzzy_find{}')
+Telescope_map('<Leader>/', 'current_buffer_fuzzy_find{}')
+Telescope_map('<Leader>f/', 'current_buffer_fuzzy_find{}')
+Telescope_map('<Leader>fs', 'lsp_document_symbols{}')
+Telescope_map('<Leader>fS', 'lsp_dynamic_workspace_symbols{}')
+Telescope_map('<Leader>fo', 'oldfiles{}')
+Telescope_map('<Leader>fr', 'lsp_references{}')
+Telescope_map('gr', 'lsp_references{}')
+
 -- todo: lsp telescope builtins
