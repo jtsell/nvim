@@ -171,7 +171,7 @@ require'lspconfig'.lua_ls.setup {
     },
   },
 }
--- require'lspconfig'.graphql.setup{
---   on_attach = custom_lsp_attach
--- }
+require'lspconfig'.graphql.setup{
+  on_attach = custom_lsp_attach
+}
 
