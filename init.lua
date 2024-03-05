@@ -32,15 +32,14 @@ o.copyindent = true
 o.encoding = 'utf-8'
 o.expandtab = true
 o.foldenable = true
-o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.foldlevelstart = 10
 o.foldmethod = 'expr'
+o.foldexpr = 'nvim_treesitter#foldexpr()'
 o.foldnestmax = 10
 o.hidden = true
 o.ignorecase = true
 o.incsearch = true
 o.mouse = 'a'
--- o.nowrap = true
 o.nu = true
 o.relativenumber = true
 o.shiftwidth = 2
@@ -63,6 +62,8 @@ g.mapleader = " "
 g.netrw_keepdir = 1
 g.markdown_fenced_languages = { 'clojure' }
 
+vim.wo.wrap = false
+
 map('n', '<SPACE>', '<Nop>', { noremap = true })
 map('i', 'jj', '<esc>', { noremap = true })
 map('i', 'jk', '<esc>', { noremap = true })
@@ -82,8 +83,11 @@ map('n', 'gB', ':bprevious<CR>', { noremap = true })
 map('n', 'gb', ':bnext<CR>', { noremap = true })
 map('v', ',', ';', { noremap = true })
 map('v', ';', ':', { noremap = true })
+map('n', 'th', ':tabm -1<CR>', { noremap = true })
+map('n', 'tl', ':tabm +1<CR>', { noremap = true })
 
-map('n', '<localleader>po', ":ConjureEval (require 'portal.api) (portal.api/tap) (portal.api/open {:theme :portal.colors/gruvbox :app false})<CR>",
+map('n', '<localleader>po',
+  ":ConjureEval (require 'portal.api) (portal.api/tap) (portal.api/open {:theme :portal.colors/gruvbox :app false})<CR>",
   { noremap = true })
 
 vim.cmd([[command! Less runtime pager.vim]])
@@ -95,3 +99,7 @@ vim.cmd([[command! Less runtime pager.vim]])
 -- vim.api.nvim_add_user_command('Less', require 'pager')
 --
 vim.cmd([[autocmd FileType graphql setlocal commentstring=#\ %s]])
+
+map('n', '<leader>ra', ':RnvimrToggle<CR>', { noremap = true })
+g.rnvimr_enable_ex = 1
+g.rnvimr_hide_gitignore = 0
