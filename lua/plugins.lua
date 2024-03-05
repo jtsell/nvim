@@ -36,8 +36,7 @@ return require('packer').startup(function(use)
   use { 'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
   use { 'windwp/nvim-autopairs', config = [[require('pairs_config')]] }
   use { 'sbdchd/neoformat' }
-  use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", requires =
-  "nvim-treesitter/nvim-treesitter" }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter', requires = "nvim-treesitter/nvim-treesitter" }
   use { 'hrsh7th/nvim-cmp',
     requires = {
       { 'L3MON4D3/LuaSnip' },
@@ -52,6 +51,9 @@ return require('packer').startup(function(use)
     },
     config = [[require('completion_config')]]
   }
+  use { 'kevinhwang91/rnvimr' }
+  use { 'github/copilot.vim' }
+
 
   if packer_bootstrap then
     require('packer').sync()
