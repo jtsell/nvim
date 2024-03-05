@@ -52,10 +52,14 @@ Telescope_map('<Leader>fp', 'builtin{}')
 Telescope_map('<Leader>ft', 'filetypes{}')
 Telescope_map('<Leader>/', 'current_buffer_fuzzy_find{}')
 Telescope_map('<Leader>f/', 'current_buffer_fuzzy_find{}')
+Telescope_map('<Leader>fo', 'oldfiles{}')
+
+-- lsp
 Telescope_map('<Leader>fs', 'lsp_document_symbols{}')
 Telescope_map('<Leader>fS', 'lsp_dynamic_workspace_symbols{}')
-Telescope_map('<Leader>fo', 'oldfiles{}')
 Telescope_map('<Leader>fr', 'lsp_references{}')
 Telescope_map('gr', 'lsp_references{}')
+Telescope_map('<Leader>fi', 'lsp_implementations{}')
+Telescope_map('gi', 'lsp_implementations{}')
 
 -- todo: lsp telescope builtins
