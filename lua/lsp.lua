@@ -11,7 +11,7 @@ local custom_lsp_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
+  -- vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gD', "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
   vim.keymap.set('n', 'ge', vim.diagnostic.setloclist, bufopts)
@@ -19,13 +19,6 @@ local custom_lsp_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   -- client.server_capabilities.documentFormattingProvider = true
 end
-
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     -- Disable signs
---     -- signs = false,
---   }
--- )
 
 local signs = {
   { name = "DiagnosticSignError", text = "" },
@@ -70,39 +63,11 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 vim.diagnostic.config(config)
 
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
--- require'lspconfig'.sumneko_lua.setup {
---   settings = {
---     Lua = {
---       runtime = {
---         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
---         version = 'LuaJIT',
---         -- Setup your lua path
---         path = runtime_path,
---       },
---       diagnostics = {
---         -- Get the language server to recognize the `vim` global
---         globals = {'vim'},
---       },
---       workspace = {
---         -- Make the server aware of Neovim runtime files
---         library = vim.api.nvim_get_runtime_file("", true),
---       },
---       -- Do not send telemetry data containing a randomized but unique identifier
---       telemetry = {
---         enable = false,
---       },
---     },
---   },
---   on_attach = custom_lsp_attach
--- }
-
 local yd_root_pattern = function (x)
   local git_root = util.root_pattern(".git")(x)
   if git_root then
-    return git_root .. "/yd"
+    -- return git_root .. "/yd"
+    return git_root
   else
     return util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn")
   end
