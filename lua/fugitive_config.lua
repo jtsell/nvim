@@ -20,6 +20,7 @@ end
 -- nnoremap <leader>gc :BCommits<CR>
 -- nnoremap <leader>gd :Gdiffsplit!<CR>
 nmap('<Leader>gg', ':call Git_Nosplit("")<CR>')
+nmap('<Leader>gG', ':tabnew | call Git_Nosplit("")<CR>')
 nmap('<Leader>gl', ':call Git_Nosplit("log")<CR>')
 nmap('<Leader>gs', ':call Git_Nosplit("show")<CR>')
 nmap('<Leader>gb', ':G blame<CR>')
