@@ -3,6 +3,8 @@ require 'nvim-treesitter.configs'.setup {
   ensure_installed = { "lua", "vim", "vimdoc", "query", "clojure", "tsx", "java", "javascript", "typescript", "graphql", "markdown", "markdown_inline" },
   sync_install = false,
   auto_install = true,
+  ignore_install = {},
+  modules = {},
   additional_vim_regex_highlighting = false,
   highlight = {
     enable = true,
@@ -10,7 +12,7 @@ require 'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,
-    -- disable = { "c", "rust" },
+    -- disable = { "typescript" },
     -- module_path = "nvim-treesitter.indent"
   },
   textobjects = {
