@@ -173,6 +173,11 @@ require'lspconfig'.lua_ls.setup {
   },
 }
 require'lspconfig'.graphql.setup{
-  on_attach = custom_lsp_attach
+  on_attach = custom_lsp_attach,
+  root_dir = yd_root_pattern,
+  filetypes = {"graphql"}
 }
 
+require'lspconfig'.jedi_language_server.setup{
+  on_attach = custom_lsp_attach,
+}
