@@ -5,6 +5,7 @@ local g = vim.g
 local o = vim.o
 local map = vim.api.nvim_set_keymap
 
+
 --g.prettier#autoformat = 1
 --g.prettier#autoformat_config_present = 1
 --g.prettier#exec_cmd_async = 1
@@ -103,3 +104,11 @@ vim.cmd([[autocmd FileType graphql setlocal commentstring=#\ %s]])
 map('n', '<leader>ra', ':RnvimrToggle<CR>', { noremap = true })
 g.rnvimr_enable_ex = 1
 g.rnvimr_hide_gitignore = 0
+map('n', 'gl', "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  callback = function()
+    vim.opt.formatoptions:remove({ 'r', 'o' })
+  end
+})
+vim.opt_global.formatoptions:remove({ 'r', 'o' })
