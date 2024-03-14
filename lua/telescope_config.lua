@@ -10,7 +10,7 @@ require('telescope').setup {
     }
   },
 
-  -- Copied from reddit: 
+  -- Copied from reddit:
   -- https://www.reddit.com/r/neovim/comments/qspemc/close_buffers_with_telescope/
   defaults = {
     mappings = {
@@ -21,6 +21,11 @@ require('telescope').setup {
         ["<C-h>"] = "which_key",
         ['<c-d>'] = require('telescope.actions').delete_buffer
       } -- i
+    }
+  },
+  pickers = {
+    find_files = {
+      follow = true
     }
   }
 }
