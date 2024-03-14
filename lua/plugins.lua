@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('gitsigns_config')]] }
   use { 'tpope/vim-fugitive', config = [[require('fugitive_config')]] }
   use { 'tpope/vim-rhubarb', requires = { 'tpope/vim-fugitive' } }
-  use { 'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
+  -- use { 'renerocksai/telekasten.nvim', requires = { 'nvim-telescope/telescope.nvim' }, config = [[require('tk_config')]] }
   use { 'windwp/nvim-autopairs', config = [[require('pairs_config')]] }
   use { 'sbdchd/neoformat' }
   use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter', requires = "nvim-treesitter/nvim-treesitter" }
