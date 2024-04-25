@@ -53,6 +53,7 @@ o.smarttab = true
 o.softtabstop = 2
 o.tabstop = 2
 o.wildmenu = true
+o.scrolloff = 12
 
 g.AutoPairsMapCR = 0
 g.clj_fmt_autosave = 0

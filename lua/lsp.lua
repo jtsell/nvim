@@ -1,6 +1,6 @@
 local util = require('lspconfig.util')
 local custom_lsp_attach = function(client, bufnr)
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
   -- vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, bufopts)
@@ -52,18 +52,18 @@ local config = {
 }
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
- config
- -- border = "rounded",
+  config
+  -- border = "rounded",
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
- config
- -- border = "rounded",
+  config
+  -- border = "rounded",
 })
 
 vim.diagnostic.config(config)
 
-local yd_root_pattern = function (x)
+local yd_root_pattern = function(x)
   local git_root = util.root_pattern(".git")(x)
   if git_root then
     -- return git_root .. "/yd"
@@ -73,16 +73,18 @@ local yd_root_pattern = function (x)
   end
 end
 
-require'lspconfig'.clojure_lsp.setup{
+require 'lspconfig'.clojure_lsp.setup {
   cmd = { "clojure-lsp" },
   filetypes = { "clojure", "edn" },
   root_dir = yd_root_pattern,
-  on_attach = function (client, bufnr) client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr); end,
+  on_attach = function(client, bufnr)
+    client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
+  end,
 }
 
-require'lspconfig'.eslint.setup{
+require 'lspconfig'.eslint.setup {
   cmd = { "vscode-eslint-language-server", "--stdio" },
-  filetypes = {"javascript"},
+  filetypes = { "javascript" },
   -- cmd = { "eslint", "--stdin" },
   settings = {
     -- for eslint, should be ignored by other language servers
@@ -103,16 +105,19 @@ require'lspconfig'.eslint.setup{
   on_attach = custom_lsp_attach
 }
 
-require'lspconfig'.tsserver.setup{
-  filetypes = {"typescript", "javascript"},
+require 'lspconfig'.tsserver.setup {
+  -- filetypes = {"typescript", "javascript"},
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  completionProvider = true,
   -- client.server_capabilities.documentFormattingProvider = false
-  on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr); end
-}
-
-require'lspconfig'.jsonls.setup{
+  -- on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr); end
   on_attach = custom_lsp_attach
 }
-require'lspconfig'.lua_ls.setup {
+
+require 'lspconfig'.jsonls.setup {
+  on_attach = custom_lsp_attach
+}
+require 'lspconfig'.lua_ls.setup {
   on_attach = custom_lsp_attach,
   root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
   settings = {
@@ -123,7 +128,7 @@ require'lspconfig'.lua_ls.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -137,12 +142,12 @@ require'lspconfig'.lua_ls.setup {
     },
   },
 }
-require'lspconfig'.graphql.setup{
+require 'lspconfig'.graphql.setup {
   on_attach = custom_lsp_attach,
   root_dir = yd_root_pattern,
-  filetypes = {"graphql"}
+  filetypes = { "graphql" }
 }
 
-require'lspconfig'.jedi_language_server.setup{
+require 'lspconfig'.jedi_language_server.setup {
   on_attach = custom_lsp_attach,
 }

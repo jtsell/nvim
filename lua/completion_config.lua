@@ -2,7 +2,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local cmp = require 'cmp'
-local luasnip = require("luasnip")
+-- local luasnip = require("luasnip")
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -12,8 +12,8 @@ end
 local cmp_next = function(fallback)
   if cmp.visible() then
     cmp.select_next_item()
-  elseif luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
+  -- elseif luasnip.expand_or_jumpable() then
+  --   luasnip.expand_or_jump()
   elseif has_words_before() then
     cmp.complete()
   else
@@ -24,8 +24,8 @@ end
 local cmp_prev = function(fallback)
   if cmp.visible() then
     cmp.select_prev_item()
-  elseif luasnip.expand_or_jumpable() then
-    luasnip.expand_or_jump()
+  -- elseif luasnip.expand_or_jumpable() then
+  --   luasnip.expand_or_jump()
   elseif has_words_before() then
     cmp.complete()
   else
@@ -64,16 +64,16 @@ cmp.setup({
     -- end, { "i", "s" }),
 
   }),
-  snippet = {
-    expand = function(args)
-      require 'luasnip'.lsp_expand(args.body)
-    end
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     require 'luasnip'.lsp_expand(args.body)
+  --   end
+  -- },
   sources = cmp.config.sources({
     { name = 'conjure' },
     { name = 'nvim_lsp' },
     { name = 'path' },
-    { name = 'luasnip' },
+    -- { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'buffer' },
   })
