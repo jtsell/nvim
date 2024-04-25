@@ -1,3 +1,36 @@
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+
+local function open_selected(open_cmd)
+  local fn = function(prompt_bufnr)
+    local picker = action_state.get_current_picker(prompt_bufnr)
+    local selections = picker:get_multi_selection()
+    selections[#selections + 1] = picker:get_selection()
+    if not selections or #selections < 1 then actions.add_selection(prompt_bufnr) end
+    actions.send_selected_to_qflist(prompt_bufnr)
+    for _, sel in pairs(selections) do
+      local line = (sel["lnum"] or 1)
+      local path = (sel["filename"] or sel[1])
+      vim.cmd(string.format('%s +%s %s', open_cmd, line, path))
+    end
+  end
+  return fn
+end
+
+local base_map = {
+  ["<C-h>"] = "which_key",
+  ['<c-d>'] = require('telescope.actions').delete_buffer,
+  ["<ESC>"] = actions.close,
+  ["<TAB>"] = actions.toggle_selection + actions.move_selection_previous,
+  ["<S-TAB>"] = actions.toggle_selection + actions.move_selection_next,
+  ["<CR>"] = open_selected("edit"),
+  ["<C-V>"] = open_selected("vsplit"),
+  ["<C-X>"] = open_selected("split"),
+  ["<C-T>"] = open_selected("tabedit"),
+  ["<DOWN>"] = require('telescope.actions').cycle_history_next,
+  ["<UP>"] = require('telescope.actions').cycle_history_prev,
+}
+
 require('telescope').setup {
   -- { defaults = { file_ignore_patterns = {"node_modules"} } }
   -- defaults = { file_ignore_patterns = {"trees/"}},
@@ -10,17 +43,10 @@ require('telescope').setup {
     }
   },
 
-  -- Copied from reddit:
-  -- https://www.reddit.com/r/neovim/comments/qspemc/close_buffers_with_telescope/
   defaults = {
     mappings = {
-      n = {
-        ['<c-d>'] = require('telescope.actions').delete_buffer
-      }, -- n
-      i = {
-        ["<C-h>"] = "which_key",
-        ['<c-d>'] = require('telescope.actions').delete_buffer
-      } -- i
+      n = base_map,
+      i = base_map
     }
   },
   pickers = {
