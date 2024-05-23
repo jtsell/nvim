@@ -14,7 +14,8 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'morhetz/gruvbox'
+  -- use 'morhetz/gruvbox'
+  use { "ellisonleao/gruvbox.nvim", config = [[require('gruvbox_config')]] }
   -- use 'overcache/NeoSolarized'
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use 'tpope/vim-repeat'
@@ -48,7 +49,7 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-path' },
       { 'neovim/nvim-lspconfig' },
-      -- { 'saadparwaiz1/cmp_luasnip' }
+      { 'saadparwaiz1/cmp_luasnip' }
     },
     config = [[require('completion_config')]]
   }

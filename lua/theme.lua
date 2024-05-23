@@ -1,5 +1,3 @@
-vim.cmd('colorscheme gruvbox')
-
 require('lualine').setup({
   options = {
     component_separators = { left = '', right = '' },
@@ -20,6 +18,3 @@ require('lualine').setup({
   },
   extensions = {'fugitive'}
 })
-
-vim.cmd('highlight SignColumn ctermbg=None guibg=None')
-vim.cmd('highlight Normal ctermbg=None')
