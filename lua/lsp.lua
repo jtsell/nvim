@@ -109,9 +109,9 @@ require 'lspconfig'.tsserver.setup {
   -- filetypes = {"typescript", "javascript"},
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   completionProvider = true,
-  -- client.server_capabilities.documentFormattingProvider = false
-  -- on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr); end
-  on_attach = custom_lsp_attach
+  -- client.server_capabilities.documentFormattingProvider = false,
+  on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr); end
+  -- on_attach = custom_lsp_attach
 }
 
 require 'lspconfig'.jsonls.setup {
