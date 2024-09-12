@@ -84,10 +84,9 @@ require 'lspconfig'.clojure_lsp.setup {
 
 require 'lspconfig'.eslint.setup {
   cmd = { "vscode-eslint-language-server", "--stdio" },
-  filetypes = { "javascript" },
+  filetypes = { "javascript", "typescript" },
   -- cmd = { "eslint", "--stdin" },
   settings = {
-    -- for eslint, should be ignored by other language servers
     packageManager = "yarn"
   },
   -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
@@ -105,8 +104,7 @@ require 'lspconfig'.eslint.setup {
   on_attach = custom_lsp_attach
 }
 
-require 'lspconfig'.tsserver.setup {
-  -- filetypes = {"typescript", "javascript"},
+require 'lspconfig'.ts_ls.setup {
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   completionProvider = true,
   -- client.server_capabilities.documentFormattingProvider = false,

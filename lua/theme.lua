@@ -5,7 +5,9 @@ require('lualine').setup({
     theme = 'gruvbox',
   },
   sections = {
-    lualine_c = {{'filename', path = 1}}
+    lualine_c = {{'filename', path = 1}},
+    lualine_x = {'lsp_progress'},
+    -- lualine_x = {'tabnine'}
   },
   tabline = {
     lualine_a = {{'tabs', mode = 2, max_length = vim.o.columns/2}},

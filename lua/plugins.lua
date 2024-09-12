@@ -1,5 +1,6 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
     install_path })
@@ -27,6 +28,7 @@ return require('packer').startup(function(use)
     config = [[require('telescope_config')]]
   }
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
+  -- use { 'gpanders/nvim-parinfer'}
   use { 'Olical/conjure', config = [[require('conjure_config')]] }
   use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
   use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
@@ -54,8 +56,12 @@ return require('packer').startup(function(use)
     config = [[require('completion_config')]]
   }
   use { 'kevinhwang91/rnvimr' }
+  -- use { 'earthly/earthly.vim' }
+  use { 'arkav/lualine-lsp-progress', requires = "nvim-lualine/lualine.nvim" }
+
+  -- AI Plugins:
   use { 'github/copilot.vim', config = [[require('copilot_config')]] }
-  use { 'earthly/earthly.vim' }
+  -- use { 'codota/tabnine-nvim', run = "./dl_binaries.sh", config = [[require('tabnine_config')]] }
 
   if packer_bootstrap then
     require('packer').sync()
