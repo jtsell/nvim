@@ -16,7 +16,6 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use { "ellisonleao/gruvbox.nvim", config = [[require('gruvbox_config')]] }
-  -- use 'overcache/NeoSolarized'
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use 'tpope/vim-repeat'
   use 'tpope/vim-commentary'
@@ -27,7 +26,6 @@ return require('packer').startup(function(use)
     config = [[require('telescope_config')]]
   }
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
-  -- use { 'gpanders/nvim-parinfer'}
   use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main' }
   use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
   use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
@@ -56,22 +54,8 @@ return require('packer').startup(function(use)
     branch = "main"
   }
   use { 'kevinhwang91/rnvimr' }
-  -- use { 'earthly/earthly.vim' }
   use { 'arkav/lualine-lsp-progress', requires = "nvim-lualine/lualine.nvim" }
 
-
-  -- use {
-  --   'MeanderingProgrammer/render-markdown.nvim',
-  --   after = { 'nvim-treesitter' },
-  --   -- requires = { 'echasnovski/mini.nvim', opt = true }, -- if you use the mini.nvim suite
-  --   -- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
-  --   requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
-  --   config = function()
-  --     require('render-markdown').setup({
-  --       file_types = { "markdown", "Avante" }
-  --     })
-  --   end,
-  -- }
 
   use { 'rmagatti/auto-session',
     requires = { 'nvim-telescope/telescope.nvim' },
@@ -81,7 +65,8 @@ return require('packer').startup(function(use)
 
   -- AI Plugins:
 
-  use { 'github/copilot.vim', config = [[require('copilot_config')]] }
+  -- use { 'github/copilot.vim', config = [[require('copilot_config')]] }
+  use { "supermaven-inc/supermaven-nvim", config = [[require('supermaven')]] }
 
   use {
     "olimorris/codecompanion.nvim",
@@ -93,22 +78,10 @@ return require('packer').startup(function(use)
       -- "MeanderingProgrammer/render-markdown.nvim",
     }
   }
-  -- use { 'yetone/avante.nvim',
-  --   config = [[require('avante_config')]],
-  --   requires = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --     'nvim-lua/plenary.nvim',
-  --     'MeanderingProgrammer/render-markdown.nvim',
-  --     'stevearc/dressing.nvim'
-  --   },
-  --   branch = 'main',
-  --   run = 'make'
-  -- }
-  -- use { "supermaven-inc/supermaven-nvim", config = [[require('supermaven')]] }
 
 
-  -- use { 'codota/tabnine-nvim', run = "./dl_binaries.sh", config = [[require('tabnine_config')]] }
+  -- Not currently using, but might try later:
+
   -- use { 'epwalsh/obsidian.nvim', config = [[require('obsidian_config')]] }
   -- use {'topaxi/pipeline.nvim', run = 'make' }
 
