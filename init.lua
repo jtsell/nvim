@@ -28,7 +28,7 @@ local map = vim.api.nvim_set_keymap
 
 o.autoindent = true
 o.clipboard = 'unnamedplus'
-o.cmdheight = 2
+o.cmdheight = 1
 o.copyindent = true
 o.encoding = 'utf-8'
 o.expandtab = true
@@ -54,6 +54,8 @@ o.softtabstop = 2
 o.tabstop = 2
 o.wildmenu = true
 o.scrolloff = 12
+o.showmode = false
+o.ignorecase = true
 
 g.AutoPairsMapCR = 0
 g.clj_fmt_autosave = 0
@@ -87,6 +89,8 @@ map('v', ',', ';', { noremap = true })
 map('v', ';', ':', { noremap = true })
 map('n', 'th', ':tabm -1<CR>', { noremap = true })
 map('n', 'tl', ':tabm +1<CR>', { noremap = true })
+map('n', '<leader>ww', ':w<CR>', { noremap = true })
+map('n', '<leader>wq', ':wq<CR>', { noremap = true })
 
 map('n', '<localleader>po',
   ":ConjureEval (require 'portal.api) (portal.api/tap) (portal.api/open {:theme :portal.colors/gruvbox :app false})<CR>",
@@ -113,3 +117,5 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
   end
 })
 vim.opt_global.formatoptions:remove({ 'r', 'o' })
+
+map('n', 'gcp', ':yank | Commentary | put<CR>', { noremap = true })

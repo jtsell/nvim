@@ -115,6 +115,7 @@ require 'lspconfig'.ts_ls.setup {
 require 'lspconfig'.jsonls.setup {
   on_attach = custom_lsp_attach
 }
+
 require 'lspconfig'.lua_ls.setup {
   on_attach = custom_lsp_attach,
   root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
@@ -140,10 +141,12 @@ require 'lspconfig'.lua_ls.setup {
     },
   },
 }
+
 require 'lspconfig'.graphql.setup {
   on_attach = custom_lsp_attach,
   root_dir = yd_root_pattern,
-  filetypes = { "graphql" }
+  -- root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
+  -- filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
 }
 
 require 'lspconfig'.jedi_language_server.setup {

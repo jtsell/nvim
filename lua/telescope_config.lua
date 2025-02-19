@@ -19,6 +19,12 @@ end
 
 local base_map = {
   ["<C-h>"] = "which_key",
+  ["<DOWN>"] = require('telescope.actions').cycle_history_next,
+  ["<UP>"] = require('telescope.actions').cycle_history_prev,
+}
+
+local custom_map = {
+  ["<C-h>"] = "which_key",
   ['<c-d>'] = require('telescope.actions').delete_buffer,
   ["<ESC>"] = actions.close,
   ["<TAB>"] = actions.toggle_selection + actions.move_selection_previous,
@@ -42,17 +48,43 @@ require('telescope').setup {
       case_mode = "smart_case",       -- or "ignore_case" or "respect_case," the default case_mode is "smart_case"
     }
   },
-
-  defaults = {
-    mappings = {
-      n = base_map,
-      i = base_map
-    }
-  },
+  -- defaults = {
+  --   mappings = {
+  --     n = base_map,
+  --     i = base_map
+  --   }
+  -- },
   pickers = {
     find_files = {
-      follow = true
+      follow = true,
+      mappings = {
+        n = custom_map,
+        i = custom_map
+      }
+    },
+    git_files = {
+      follow = true,
+      mappings = {
+        n = custom_map,
+        i = custom_map
+      }
+
+    },
+    buffers = {
+      sort_lastused = false,
+      mappings = {
+        n = custom_map,
+        i = custom_map
+      }
+    },
+    live_grep = {
+      follow = true,
+      mappings = {
+        n = custom_map,
+        i = custom_map
+      }
     }
+
   }
 }
 -- To get fzf loaded and working with telescope, you need to call
@@ -79,7 +111,7 @@ Telescope_map('<Leader>ff', 'find_files{}')
 Telescope_map('<Leader>fh', 'help_tags{}')
 Telescope_map('<Leader>fk', 'keymaps{}')
 Telescope_map('<Leader>fm', 'marks{}')
-Telescope_map('<Leader>fp', 'builtin{}')
+-- Telescope_map('<Leader>fp', 'builtin{}')
 Telescope_map('<Leader>ft', 'filetypes{}')
 Telescope_map('<Leader>/', 'current_buffer_fuzzy_find{}')
 Telescope_map('<Leader>f/', 'current_buffer_fuzzy_find{}')
@@ -88,9 +120,9 @@ Telescope_map('<Leader>fo', 'oldfiles{}')
 -- lsp
 Telescope_map('<Leader>fs', 'lsp_document_symbols{}')
 Telescope_map('<Leader>fS', 'lsp_dynamic_workspace_symbols{}')
-Telescope_map('<Leader>fr', 'lsp_references{}')
-Telescope_map('gr', 'lsp_references{}')
-Telescope_map('<Leader>fi', 'lsp_implementations{}')
-Telescope_map('gi', 'lsp_implementations{}')
+-- Telescope_map('<Leader>fr', 'lsp_references{}')
+-- Telescope_map('<Leader>fi', 'lsp_implementations{}')
 
--- todo: lsp telescope builtins
+Telescope_map('gr', 'lsp_references{}')
+Telescope_map('gi', 'lsp_implementations{}')
+Telescope_map('gd', 'lsp_definitions{}')
