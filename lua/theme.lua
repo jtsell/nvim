@@ -8,9 +8,10 @@ require('lualine').setup({
     ignore_focus = {},
     globalstatus = true,
     disabled_filetypes = { -- Filetypes to disable lualine for.
-      winbar = {"Avante", "AvanteInput"},         -- only ignores the ft for winbar.
+      winbar = {"Avante", "AvanteInput", "codecompanion", "fugitive", "terminal"}, -- only ignores the ft for winbar.
     },
   },
+
   sections = {
     lualine_a = {
       {
@@ -41,7 +42,10 @@ require('lualine').setup({
     },
     -- lualine_c = { { 'filename', path = 1 } },
     lualine_x = { 'lsp_progress' },
+    lualine_y = {'filetype' },
+
   },
+
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -61,6 +65,7 @@ require('lualine').setup({
     lualine_y = {},
     lualine_z = {},
   },
+
   winbar = {
     lualine_c = {
       {
@@ -85,6 +90,7 @@ require('lualine').setup({
     --   },
     -- },
   },
+
   inactive_winbar = {
     lualine_c = {
       {
@@ -109,6 +115,7 @@ require('lualine').setup({
     -- },
 
   },
+
   tabline = {
     lualine_a = { { 'tabs', mode = 2, max_length = vim.o.columns / 2 } },
     lualine_b = {},

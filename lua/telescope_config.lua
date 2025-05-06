@@ -55,13 +55,13 @@ require('telescope').setup {
   --   }
   -- },
   pickers = {
-    find_files = {
-      follow = true,
-      mappings = {
-        n = custom_map,
-        i = custom_map
-      }
-    },
+    -- find_files = {
+    --   follow = true,
+    --   mappings = {
+    --     n = custom_map,
+    --     i = custom_map
+    --   }
+    -- },
     git_files = {
       follow = true,
       mappings = {
@@ -70,13 +70,13 @@ require('telescope').setup {
       }
 
     },
-    buffers = {
-      sort_lastused = false,
-      mappings = {
-        n = custom_map,
-        i = custom_map
-      }
-    },
+    -- buffers = {
+    --   sort_lastused = false,
+    --   mappings = {
+    --     n = custom_map,
+    --     i = custom_map
+    --   }
+    -- },
     live_grep = {
       follow = true,
       mappings = {

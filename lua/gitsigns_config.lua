@@ -2,11 +2,11 @@ require('gitsigns').setup {
   signcolumn = false,
   numhl = true,
   signs = {
-    -- add = { numhl='GitSignsAddNr'},
-    -- change = { numhl='GitSignsChangeNr'},
-    -- delete = { numhl='GitSignsDeleteNr'},
-    -- topdelete = { numhl='GitSignsDeleteNr'},
-    -- changedelete = { numhl='GitSignsChangeNr'},
+    add = { numhl='GitSignsAddNr'},
+    change = { numhl='GitSignsChangeNr'},
+    delete = { numhl='GitSignsDeleteNr'},
+    topdelete = { numhl='GitSignsDeleteNr'},
+    changedelete = { numhl='GitSignsChangeNr'},
   },
 }
 

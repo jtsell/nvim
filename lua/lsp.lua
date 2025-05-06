@@ -27,9 +27,21 @@ local signs = {
   { name = "DiagnosticSignInfo", text = "" }
 }
 
+-- sign_define was deprecated, replaced with vim.diagnostic.config
 for _, sign in ipairs(signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+ vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
+
+-- vim.diagnostic.config({
+--   signs = {
+--     text = {
+--       vim.diagnostic.severity.ERROR, "",
+--       vim.diagnostic.severity.WARN, "",
+--       vim.diagnostic.severity.INFO, "",
+--       vim.diagnostic.severity.HINT, ""
+--     }
+--   }
+-- })
 
 local config = {
   virtual_text = true,
@@ -142,12 +154,12 @@ require 'lspconfig'.lua_ls.setup {
   },
 }
 
-require 'lspconfig'.graphql.setup {
-  on_attach = custom_lsp_attach,
-  root_dir = yd_root_pattern,
-  -- root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
-  -- filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
-}
+-- require 'lspconfig'.graphql.setup {
+--   on_attach = custom_lsp_attach,
+--   root_dir = yd_root_pattern,
+--   -- root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
+--   -- filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
+-- }
 
 require 'lspconfig'.jedi_language_server.setup {
   on_attach = custom_lsp_attach,

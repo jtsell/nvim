@@ -1,8 +1,6 @@
 require 'plugins'
 require 'theme'
 
-local g = vim.g
-local o = vim.o
 local map = vim.api.nvim_set_keymap
 
 
@@ -26,47 +24,51 @@ local map = vim.api.nvim_set_keymap
 -- o.nobackup=true
 -- o.nowritebackup=true
 
-o.autoindent = true
-o.clipboard = 'unnamedplus'
-o.cmdheight = 1
-o.copyindent = true
-o.encoding = 'utf-8'
-o.expandtab = true
-o.foldenable = true
-o.foldlevelstart = 10
-o.foldmethod = 'expr'
-o.foldexpr = 'nvim_treesitter#foldexpr()'
-o.foldnestmax = 10
-o.hidden = true
-o.ignorecase = true
-o.incsearch = true
-o.mouse = 'a'
-o.nu = true
-o.relativenumber = true
-o.shiftwidth = 2
-o.showcmd = true
-o.showmatch = true
-o.signcolumn = 'yes'
-o.smartcase = true
-o.smartindent = true
-o.smarttab = true
-o.softtabstop = 2
-o.tabstop = 2
-o.wildmenu = true
-o.scrolloff = 12
-o.showmode = false
-o.ignorecase = true
+vim.o.autoindent = true
+vim.o.clipboard = 'unnamedplus'
+vim.o.cmdheight = 1
+vim.o.copyindent = true
+vim.o.encoding = 'utf-8'
+vim.o.expandtab = true
+vim.o.foldenable = true
+vim.o.foldlevelstart = 10
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldnestmax = 10
+vim.o.hidden = true
+vim.o.ignorecase = true
+vim.o.incsearch = true
+vim.o.mouse = 'a'
+vim.o.nu = true
+vim.o.relativenumber = true
+vim.o.shiftwidth = 2
+vim.o.showcmd = true
+vim.o.showmatch = true
+vim.o.signcolumn = 'yes'
+vim.o.smartcase = true
+vim.o.smartindent = true
+vim.o.smarttab = true
+vim.o.softtabstop = 2
+vim.o.tabstop = 2
+vim.o.wildmenu = true
+vim.o.scrolloff = 12
+vim.o.showmode = false
+vim.o.ignorecase = true
 
-g.AutoPairsMapCR = 0
-g.clj_fmt_autosave = 0
-g.clojure_align_multiline_strings = 1
-g.clojure_align_subforms = 1
-g.indentLine_char = '│'
-g.mapleader = " "
-g.netrw_keepdir = 1
-g.markdown_fenced_languages = { 'clojure' }
+vim.g.AutoPairsMapCR = 0
+vim.g.clj_fmt_autosave = 0
+vim.g.clojure_align_multiline_strings = 1
+vim.g.clojure_align_subforms = 1
+vim.g.indentLine_char = '│'
+vim.g.mapleader = " "
+vim.g.netrw_keepdir = 1
+vim.g.markdown_fenced_languages = { 'clojure' }
 
 vim.wo.wrap = false
+-- vim.wo.wrap = true
+-- vim.wo.linebreak = true
+-- vim.wo.breakindent = true
+
 
 map('n', '<SPACE>', '<Nop>', { noremap = true })
 map('i', 'jj', '<esc>', { noremap = true })
@@ -91,6 +93,7 @@ map('n', 'th', ':tabm -1<CR>', { noremap = true })
 map('n', 'tl', ':tabm +1<CR>', { noremap = true })
 map('n', '<leader>ww', ':w<CR>', { noremap = true })
 map('n', '<leader>wq', ':wq<CR>', { noremap = true })
+map('t', '<ESC><ESC>', '<C-\\><C-n>', { noremap = true })
 
 map('n', '<localleader>po',
   ":ConjureEval (require 'portal.api) (portal.api/tap) (portal.api/open {:theme :portal.colors/gruvbox :app false})<CR>",
@@ -107,8 +110,8 @@ vim.cmd([[command! Less runtime pager.vim]])
 vim.cmd([[autocmd FileType graphql setlocal commentstring=#\ %s]])
 
 map('n', '<leader>ra', ':RnvimrToggle<CR>', { noremap = true })
-g.rnvimr_enable_ex = 1
-g.rnvimr_hide_gitignore = 0
+vim.g.rnvimr_enable_ex = 1
+vim.g.rnvimr_hide_gitignore = 0
 map('n', 'gl', "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {

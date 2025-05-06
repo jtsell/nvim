@@ -25,14 +25,17 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } },
     config = [[require('telescope_config')]]
   }
+
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
   use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main' }
+  use { 'treybastian/nvim-jack-in', branch = 'main', config = [[require('jack_in_config')]] }
+
   use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
   use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
   use 'tpope/vim-sexp-mappings-for-regular-people'
   use 'junegunn/rainbow_parentheses.vim'
   use 'lukas-reineke/indent-blankline.nvim'
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('gitsigns_config')]] }
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = [[require('gitsigns_config')]], branch = 'main' }
   use { 'tpope/vim-fugitive', config = [[require('fugitive_config')]] }
   use { 'tpope/vim-rhubarb', requires = { 'tpope/vim-fugitive' } }
   use { 'windwp/nvim-autopairs', config = [[require('pairs_config')]] }
@@ -62,11 +65,16 @@ return require('packer').startup(function(use)
     config = [[require('auto_session')]]
   }
   use { "OXY2DEV/markview.nvim", config = [[require('markview_config')]], branch = 'main' }
-
   -- AI Plugins:
 
-  -- use { 'github/copilot.vim', config = [[require('copilot_config')]] }
-  use { "supermaven-inc/supermaven-nvim", config = [[require('supermaven')]] }
+  -- Completion:
+  -- use { 'milanglacier/minuet-ai.nvim',
+  --   config = [[require('minuet_config')]],
+  --   branch = 'main',
+  --   requires = { 'nvim-lua/plenary.nvim' }
+  -- }
+  use { 'github/copilot.vim', config = [[require('copilot_config')]] }
+  -- use { "supermaven-inc/supermaven-nvim", config = [[require('supermaven')]] }
 
   use {
     "olimorris/codecompanion.nvim",
