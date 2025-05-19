@@ -2,9 +2,10 @@ local default_model = "anthropic/claude-3.5-sonnet"
 local available_models = {
   "anthropic/claude-3.5-sonnet",
   "anthropic/claude-3.7-sonnet",
-  "google/gemini-2.5-flash-preview:thinking",
+  "google/gemini-2.5-pro-preview",
   "openai/gpt-4.1",
   "openai/gpt-4o-2024-11-20",
+  "x-ai/grok-3-beta",
 }
 local current_model = default_model
 
@@ -115,6 +116,23 @@ require("codecompanion").setup {
           modes = { n = "<F14>", i = "<F14>" },
         }
       },
+
+      slash_commands = {
+        ["buffer"] = {
+          keymaps = {
+            modes = {
+              n = "<leader>ab"
+            }
+          },
+        },
+        ["file"] = {
+          keymaps = {
+            modes = {
+              n = "<leader>af"
+            }
+          }
+        }
+      }
     },
 
     inline = {

@@ -62,28 +62,30 @@ require('telescope').setup {
     --     i = custom_map
     --   }
     -- },
-    git_files = {
-      follow = true,
-      mappings = {
-        n = custom_map,
-        i = custom_map
-      }
-
-    },
-    -- buffers = {
-    --   sort_lastused = false,
+    -- git_files = {
+    --   follow = true,
     --   mappings = {
     --     n = custom_map,
     --     i = custom_map
     --   }
     -- },
-    live_grep = {
-      follow = true,
+    buffers = {
+      sort_lastused = false,
       mappings = {
-        n = custom_map,
-        i = custom_map
+        i = { ['<c-d>'] = require('telescope.actions').delete_buffer },
+        n = { ['<c-d>'] = require('telescope.actions').delete_buffer }
+
+        -- n = custom_map,
+        -- i = custom_map
       }
-    }
+    },
+    -- live_grep = {
+    --   follow = true,
+    --   mappings = {
+    --     n = custom_map,
+    --     i = custom_map
+    --   }
+    -- }
 
   }
 }
