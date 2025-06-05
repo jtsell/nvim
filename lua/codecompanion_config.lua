@@ -143,7 +143,7 @@ require("codecompanion").setup {
 }
 
 
-vim.keymap.set("n", "<leader>ga", select_model, { desc = "Select Openrouter Model" })
+vim.keymap.set("n", "<leader>am", select_model, { desc = "Select Openrouter Model" })
 vim.keymap.set({ 'n' }, '<Leader>ac', '<cmd>CodeCompanionChat Toggle<cr>')
 -- vim.keymap.set({ 'n' }, '<C-c>', '<cmd>CodeCompanionChat Toggle<cr>')
 -- vim.keymap.set({'v'}, '<C-c>', '<cmd>CodeCompanionChat Add<cr>')
