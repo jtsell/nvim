@@ -42,5 +42,5 @@ require("auto-session").setup {
 }
 
 vim.api.nvim_set_keymap('n', '<leader>fp', '<cmd>SessionSearch<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ws', '<cmd>SessionSave<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>wl', '<cmd>SessionRestore<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ws', '<cmd>AutoSession save<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>wl', '<cmd>AutoSession restore<CR>', { noremap = true })

@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
   }
 
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
+  -- use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main', commit = '1df285f180a16da369cd383f6e1c136923b2a862' }
   use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main' }
   use { 'treybastian/nvim-jack-in', branch = 'main', config = [[require('jack_in_config')]] }
 
@@ -75,6 +76,7 @@ return require('packer').startup(function(use)
   -- }
   use { 'github/copilot.vim', config = [[require('copilot_config')]] }
   -- use { "supermaven-inc/supermaven-nvim", config = [[require('supermaven')]] }
+  -- use { 'Exafunction/windsurf.vim', config = [[require('codeium')]] }
 
   use {
     "olimorris/codecompanion.nvim",

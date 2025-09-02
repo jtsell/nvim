@@ -1,59 +1,76 @@
-local default_model = "anthropic/claude-3.5-sonnet"
-local available_models = {
-  "anthropic/claude-3.5-sonnet",
-  "anthropic/claude-3.7-sonnet",
-  "google/gemini-2.5-pro-preview",
-  "openai/gpt-4.1",
-  "openai/gpt-4o-2024-11-20",
-  "x-ai/grok-3-beta",
-}
-local current_model = default_model
+-- local default_model = "anthropic/claude-3.5-sonnet"
+-- local default_model = "google/gemini-2.5-pro-preview"
+-- local available_models = {
+--   "anthropic/claude-3.5-sonnet",
+--   "anthropic/claude-3.7-sonnet",
+--   "google/gemini-2.5-pro-preview",
+--   "openai/gpt-4.1",
+--   "openai/gpt-4o-2024-11-20",
+--   "x-ai/grok-3-beta",
+-- }
+-- local current_model = default_model
 
-local function select_model()
-  vim.ui.select(available_models, {
-    prompt = "Select  Model:",
-  }, function(choice)
-    if choice then
-      current_model = choice
-      vim.notify("Selected model: " .. current_model)
-    end
-  end)
-end
+-- local function select_model()
+--   vim.ui.select(available_models, {
+--     prompt = "Select  Model:",
+--   }, function(choice)
+--     if choice then
+--       current_model = choice
+--       vim.notify("Selected model: " .. current_model)
+--     end
+--   end)
+-- end
 
-local adapters = {
-  anthropic = function()
-    return require("codecompanion.adapters").extend("anthropic", {
-      name = "anthropic",
-      schema = {
-        model = {
-          default = "claude-3-5-sonnet-20241022",
-        },
-      },
-    })
-  end,
+-- local anthropic = {
+--   anthropic = function()
+--     return require("codecompanion.adapters").extend("anthropic", {
+--       name = "anthropic",
+--       schema = {
+--         model = {
+--           default = "claude-3-5-sonnet-20241022",
+--         },
+--       },
+--     })
+--   end,
 
-  openrouter = function()
-    return require("codecompanion.adapters").extend("openai_compatible", {
-      name = "openrouter",
-      env = {
-        url = "https://openrouter.ai/api",
-        api_key = os.getenv("OPENROUTER_API_KEY"),
-        chat_url = "/v1/chat/completions",
-      },
-      schema = {
-        model = {
-          default = current_model
-        }
-      }
+-- openrouter = function()
+--   return require("codecompanion.adapters").extend("openai_compatible", {
+--     name = "openrouter",
+--     env = {
+--       url = "https://openrouter.ai/api",
+--       api_key = os.getenv("OPENROUTER_API_KEY"),
+--       chat_url = "/v1/chat/completions",
+--     },
+--     schema = {
+--       model = {
+--         default = current_model
+--       }
+--     }
 
-    })
-  end
+-- })
+-- end
 
-}
+-- }
 
 
 require("codecompanion").setup {
-  adapters = adapters,
+  opts = {
+    log_level = "DEBUG", -- or "TRACE"
+  },
+  adapters = {
+    http = {
+      anthropic = function()
+        return require("codecompanion.adapters").extend("anthropic", {
+          name = "anthropic",
+          schema = {
+            model = {
+              default = "claude-3-5-sonnet-20241022",
+            },
+          },
+        })
+      end
+    }
+  },
   display = {
     chat = {
 
@@ -108,7 +125,8 @@ require("codecompanion").setup {
 
   strategies = {
     chat = {
-      adapter = "openrouter",
+      -- adapter = "openrouter",
+      adapter = "anthropic",
       user = "Jeff",
 
       keymaps = {
@@ -143,11 +161,11 @@ require("codecompanion").setup {
 }
 
 
-vim.keymap.set("n", "<leader>am", select_model, { desc = "Select Openrouter Model" })
+-- vim.keymap.set("n", "<leader>am", select_model, { desc = "Select Openrouter Model" })
 vim.keymap.set({ 'n' }, '<Leader>ac', '<cmd>CodeCompanionChat Toggle<cr>')
 -- vim.keymap.set({ 'n' }, '<C-c>', '<cmd>CodeCompanionChat Toggle<cr>')
 -- vim.keymap.set({'v'}, '<C-c>', '<cmd>CodeCompanionChat Add<cr>')
 -- vim.keymap.set({ 'n', 'v' }, '<Leader>aa', '<cmd>CodeCompanionActions<cr>')
 vim.keymap.set({ 'n', 'v' }, '<Leader>af', '<cmd>CodeCompanionChat Add<cr>')
-vim.keymap.set("n", "<leader>cs", select_model, { desc = "Select OpenRouter Model" })
+-- vim.keymap.set("n", "<leader>cs", select_model, { desc = "Select OpenRouter Model" })
 vim.cmd([[cab cc CodeCompanion]])
