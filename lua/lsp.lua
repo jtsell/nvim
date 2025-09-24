@@ -20,35 +20,47 @@ local custom_lsp_attach = function(client, bufnr)
   -- client.server_capabilities.documentFormattingProvider = true
 end
 
-local signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" }
-}
+-- local signs = {
+--   { name = "DiagnosticSignError", text = "" },
+--   { name = "DiagnosticSignWarn", text = "" },
+--   { name = "DiagnosticSignHint", text = "" },
+--   { name = "DiagnosticSignInfo", text = "" }
+-- }
 
--- sign_define was deprecated, replaced with vim.diagnostic.config
-for _, sign in ipairs(signs) do
- vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-end
+-- -- sign_define was deprecated, replaced with vim.diagnostic.config
+-- for _, sign in ipairs(signs) do
+--   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+-- end
 
--- vim.diagnostic.config({
---   signs = {
---     text = {
---       vim.diagnostic.severity.ERROR, "",
---       vim.diagnostic.severity.WARN, "",
---       vim.diagnostic.severity.INFO, "",
---       vim.diagnostic.severity.HINT, ""
---     }
---   }
--- })
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = ""
+    },
+    texthl = {
+      [vim.diagnostic.severity.ERROR] = "Error",
+      [vim.diagnostic.severity.WARN] = "Warn",
+      [vim.diagnostic.severity.INFO] = "Info",
+      [vim.diagnostic.severity.HINT] = "Hint"
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = ""
+    }
+  }
+})
 
 local config = {
   virtual_text = true,
   -- show signs
-  signs = {
-    active = signs,
-  },
+  -- signs = {
+  --   active = signs,
+  -- },
   update_in_insert = false,
   underline = true,
   severity_sort = true,
@@ -63,15 +75,15 @@ local config = {
   },
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  config
-  -- border = "rounded",
-})
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--   config
+--   -- border = "rounded",
+-- })
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  config
-  -- border = "rounded",
-})
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+--   config
+--   -- border = "rounded",
+-- })
 
 vim.diagnostic.config(config)
 
@@ -85,16 +97,26 @@ local yd_root_pattern = function(x)
   end
 end
 
-require 'lspconfig'.clojure_lsp.setup {
+-- require 'lspconfig'.clojure_lsp.setup {
+--   cmd = { "clojure-lsp" },
+--   filetypes = { "clojure", "edn" },
+--   root_dir = yd_root_pattern,
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
+--   end,
+-- }
+
+vim.lsp.config('clojure-lsp', {
   cmd = { "clojure-lsp" },
   filetypes = { "clojure", "edn" },
   root_dir = yd_root_pattern,
   on_attach = function(client, bufnr)
     client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
   end,
-}
+})
+vim.lsp.enable('clojure_lsp')
 
-require 'lspconfig'.eslint.setup {
+vim.lsp.config('eslint', {
   cmd = { "vscode-eslint-language-server", "--stdio" },
   filetypes = { "javascript", "typescript" },
   -- cmd = { "eslint", "--stdin" },
@@ -114,21 +136,29 @@ require 'lspconfig'.eslint.setup {
   -- packageManager = "yarn",
   -- on_init = function(client, initialize_result) client.resolved_capabilities.document_formatting = true; end,
   on_attach = custom_lsp_attach
-}
+})
+vim.lsp.enable('eslint')
 
-require 'lspconfig'.ts_ls.setup {
+-- require 'lspconfig'.ts_ls.setup {
+
+vim.lsp.config('ts_ls', {
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   completionProvider = true,
   -- client.server_capabilities.documentFormattingProvider = false,
-  on_attach = function(client, bufnr) client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr); end
-  -- on_attach = custom_lsp_attach
-}
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr);
+  end
+})
+vim.lsp.enable('ts_ls')
 
-require 'lspconfig'.jsonls.setup {
+-- require 'lspconfig'.jsonls.setup {
+vim.lsp.config('jsonls', {
   on_attach = custom_lsp_attach
-}
+})
+vim.lsp.enable('jsonls')
 
-require 'lspconfig'.lua_ls.setup {
+-- require 'lspconfig'.lua_ls.setup {
+vim.lsp.config('lua_ls', {
   on_attach = custom_lsp_attach,
   root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
   settings = {
@@ -152,15 +182,20 @@ require 'lspconfig'.lua_ls.setup {
       },
     },
   },
-}
+})
+vim.lsp.enable('lua_ls')
 
 -- require 'lspconfig'.graphql.setup {
---   on_attach = custom_lsp_attach,
---   root_dir = yd_root_pattern,
---   -- root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
---   -- filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
--- }
+-- vim.lsp.config('graphql', {
+  -- on_attach = custom_lsp_attach,
+  -- root_dir = yd_root_pattern,
+  -- root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
+  -- filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
+-- })
+vim.lsp.enable('graphql')
 
-require 'lspconfig'.jedi_language_server.setup {
+-- require 'lspconfig'.jedi_language_server.setup {
+vim.lsp.config('jedi_language_server', {
   on_attach = custom_lsp_attach,
-}
+})
+vim.lsp.enable('jedi_language_server')

@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
   -- use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main', commit = '1df285f180a16da369cd383f6e1c136923b2a862' }
   use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main' }
-  use { 'treybastian/nvim-jack-in', branch = 'main', config = [[require('jack_in_config')]] }
+  -- use { 'treybastian/nvim-jack-in', branch = 'main', config = [[require('jack_in_config')]] }
 
   use { 'neovim/nvim-lspconfig', config = [[require('lsp')]] }
   use { 'guns/vim-sexp', config = [[vim.g.sexp_enable_insert_mode_mappings = false]] }
