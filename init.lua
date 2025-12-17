@@ -1,3 +1,5 @@
+vim.deprecate = function() end
+
 require 'plugins'
 require 'theme'
 
@@ -109,9 +111,6 @@ vim.cmd([[command! Less runtime pager.vim]])
 --
 vim.cmd([[autocmd FileType graphql setlocal commentstring=#\ %s]])
 
-map('n', '<leader>ra', ':RnvimrToggle<CR>', { noremap = true })
-vim.g.rnvimr_enable_ex = 1
-vim.g.rnvimr_hide_gitignore = 0
 map('n', 'gl', "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {

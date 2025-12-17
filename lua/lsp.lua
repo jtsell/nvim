@@ -20,6 +20,9 @@ local custom_lsp_attach = function(client, bufnr)
   -- client.server_capabilities.documentFormattingProvider = true
 end
 
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', 'gD', "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
+
 -- local signs = {
 --   { name = "DiagnosticSignError", text = "" },
 --   { name = "DiagnosticSignWarn", text = "" },
@@ -97,24 +100,25 @@ local yd_root_pattern = function(x)
   end
 end
 
--- require 'lspconfig'.clojure_lsp.setup {
---   cmd = { "clojure-lsp" },
---   filetypes = { "clojure", "edn" },
---   root_dir = yd_root_pattern,
---   on_attach = function(client, bufnr)
---     client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
---   end,
--- }
-
-vim.lsp.config('clojure-lsp', {
+-- This is deprecated, but I'm having issues with the new way of doing things.
+require 'lspconfig'.clojure_lsp.setup {
   cmd = { "clojure-lsp" },
   filetypes = { "clojure", "edn" },
   root_dir = yd_root_pattern,
   on_attach = function(client, bufnr)
     client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
   end,
-})
-vim.lsp.enable('clojure_lsp')
+}
+
+-- vim.lsp.config('clojure-lsp', {
+--   cmd = { "clojure-lsp" },
+--   filetypes = { "clojure", "edn" },
+--   root_dir = yd_root_pattern,
+--   on_attach = function(client, bufnr)
+--     client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
+--   end,
+-- })
+-- vim.lsp.enable('clojure_lsp')
 
 vim.lsp.config('eslint', {
   cmd = { "vscode-eslint-language-server", "--stdio" },
@@ -146,7 +150,8 @@ vim.lsp.config('ts_ls', {
   completionProvider = true,
   -- client.server_capabilities.documentFormattingProvider = false,
   on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false; custom_lsp_attach(client, bufnr);
+    client.server_capabilities.documentFormattingProvider = false;
+    custom_lsp_attach(client, bufnr);
   end
 })
 vim.lsp.enable('ts_ls')

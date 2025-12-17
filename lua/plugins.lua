@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
     config = [[require('completion_config')]],
     branch = "main"
   }
-  use { 'kevinhwang91/rnvimr' }
+  use { 'kevinhwang91/rnvimr', config = [[require('ranger_config')]] }
   use { 'arkav/lualine-lsp-progress', requires = "nvim-lualine/lualine.nvim" }
 
 
@@ -78,16 +78,16 @@ return require('packer').startup(function(use)
   -- use { "supermaven-inc/supermaven-nvim", config = [[require('supermaven')]] }
   -- use { 'Exafunction/windsurf.vim', config = [[require('codeium')]] }
 
-  use {
-    "olimorris/codecompanion.nvim",
-    config = [[require('codecompanion_config')]],
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "OXY2DEV/markview.nvim"
-      -- "MeanderingProgrammer/render-markdown.nvim",
-    }
-  }
+  -- use {
+  --   "olimorris/codecompanion.nvim",
+  --   config = [[require('codecompanion_config')]],
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "OXY2DEV/markview.nvim"
+  --     -- "MeanderingProgrammer/render-markdown.nvim",
+  --   }
+  -- }
 
 
   -- Not currently using, but might try later:
