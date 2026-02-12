@@ -4,9 +4,9 @@ local custom_lsp_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
   -- vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, bufopts)
-  if client.server_capabilities.documentFormattingProvider then
-    vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end, bufopts)
-  end
+  -- if client.server_capabilities.documentFormattingProvider then
+  --   vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end, bufopts)
+  -- end
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -163,7 +163,8 @@ vim.lsp.config('jsonls', {
 vim.lsp.enable('jsonls')
 
 -- require 'lspconfig'.lua_ls.setup {
-vim.lsp.config('lua_ls', {
+-- vim.lsp.config('lua_ls', {
+require 'lspconfig'.lua_ls.setup {
   on_attach = custom_lsp_attach,
   root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
   settings = {
@@ -187,20 +188,28 @@ vim.lsp.config('lua_ls', {
       },
     },
   },
-})
-vim.lsp.enable('lua_ls')
+}
+-- vim.lsp.enable('lua_ls')
 
--- require 'lspconfig'.graphql.setup {
+require 'lspconfig'.graphql.setup {
 -- vim.lsp.config('graphql', {
-  -- on_attach = custom_lsp_attach,
+  on_attach = custom_lsp_attach,
   -- root_dir = yd_root_pattern,
-  -- root_dir = util.root_pattern('.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
-  -- filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
--- })
-vim.lsp.enable('graphql')
+  root_dir = util.root_pattern('.graphqlrc*', '.graphql.config.*', 'graphql.config.*', '.git'),
+  filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
+}
+-- vim.lsp.enable('graphql')
 
 -- require 'lspconfig'.jedi_language_server.setup {
 vim.lsp.config('jedi_language_server', {
   on_attach = custom_lsp_attach,
 })
 vim.lsp.enable('jedi_language_server')
+
+require 'lspconfig'.bashls.setup {
+  on_attach = custom_lsp_attach,
+}
+
+require 'lspconfig'.fish_lsp.setup {
+  on_attach = custom_lsp_attach,
+}

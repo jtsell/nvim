@@ -119,6 +119,10 @@ Telescope_map('<Leader>/', 'current_buffer_fuzzy_find{}')
 Telescope_map('<Leader>f/', 'current_buffer_fuzzy_find{}')
 Telescope_map('<Leader>fo', 'oldfiles{}')
 
+-- Git
+Telescope_map('<Leader>fg', 'git_status{}')
+Telescope_map('<Leader>fG', 'git_branches{}')
+
 -- lsp
 Telescope_map('<Leader>fs', 'lsp_document_symbols{}')
 Telescope_map('<Leader>fS', 'lsp_dynamic_workspace_symbols{}')

@@ -16,6 +16,7 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use { "ellisonleao/gruvbox.nvim", config = [[require('gruvbox_config')]] }
+  use { 'kyazdani42/nvim-web-devicons' }
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   use 'tpope/vim-repeat'
   use 'tpope/vim-commentary'
@@ -25,6 +26,7 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } },
     config = [[require('telescope_config')]]
   }
+  -- use {'mrloop/telescope-git-branch.nvim', requires = { 'nvim-telescope/telescope.nvim' }}
 
   use { 'eraserhd/parinfer-rust', run = 'cargo build --release' }
   -- use { 'Olical/conjure', config = [[require('conjure_config')]], branch = 'main', commit = '1df285f180a16da369cd383f6e1c136923b2a862' }
@@ -40,7 +42,6 @@ return require('packer').startup(function(use)
   use { 'tpope/vim-fugitive', config = [[require('fugitive_config')]] }
   use { 'tpope/vim-rhubarb', requires = { 'tpope/vim-fugitive' } }
   use { 'windwp/nvim-autopairs', config = [[require('pairs_config')]] }
-  use { 'sbdchd/neoformat' }
   use { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter', requires = "nvim-treesitter/nvim-treesitter" }
   use { 'hrsh7th/nvim-cmp',
     requires = {
@@ -57,7 +58,16 @@ return require('packer').startup(function(use)
     config = [[require('completion_config')]],
     branch = "main"
   }
-  use { 'kevinhwang91/rnvimr', config = [[require('ranger_config')]] }
+
+  -- File Explorer:
+  -- use { 'kevinhwang91/rnvimr', config = [[require('ranger_config')]] }
+  use { "stevearc/oil.nvim", requires = "kyazdani42/nvim-web-devicons", config = [[require('oil_config')]] }
+  use { "benomahony/oil-git.nvim", requires = "stevearc/oil.nvim" }
+
+  -- Formatter:
+  use { 'sbdchd/neoformat' }
+  use { 'stevearc/conform.nvim', config = [[require('conform_config')]] }
+
   use { 'arkav/lualine-lsp-progress', requires = "nvim-lualine/lualine.nvim" }
 
 
@@ -88,7 +98,7 @@ return require('packer').startup(function(use)
   --     -- "MeanderingProgrammer/render-markdown.nvim",
   --   }
   -- }
-
+  -- use {"folke/which-key.nvim", config = function() require("which-key").setup {} end}
 
   -- Not currently using, but might try later:
 
