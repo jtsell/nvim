@@ -2,7 +2,8 @@ require("conform").setup({
 	formatters_by_ft = {
 		bash = { "shfmt", lsp_format = "fallback" },
 		sh = { "shfmt", lsp_format = "fallback" },
-		clojure = { "cljfmt", lsp_format = "fallback" },
+		-- clojure = { "cljfmt", lsp_format = "fallback" },
+		clojure = {lsp_format = "prefer" },
 		css = { "prettier" },
 		fish = { "fish_indent" },
 		graphql = { "prettier" },
