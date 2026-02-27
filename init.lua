@@ -64,6 +64,7 @@ vim.g.indentLine_char = "│"
 vim.g.mapleader = " "
 vim.g.netrw_keepdir = 1
 vim.g.markdown_fenced_languages = { "clojure" }
+vim.o.conceallevel = 2
 
 vim.wo.wrap = false
 -- vim.wo.wrap = true
