@@ -78,13 +78,13 @@ require("oil").setup({
   -- See :help oil-columns
   columns = {
     "icon",
-    "permissions",
+    -- "permissions",
     -- "size",
     -- "mtime",
   },
   -- Buffer-local options to use for oil buffers
   buf_options = {
-    buflisted = false,
+    buflisted = true,
     bufhidden = "hide",
   },
   -- Window-local options to use for oil buffers
