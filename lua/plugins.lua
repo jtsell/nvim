@@ -89,7 +89,7 @@ return require("packer").startup(function(use)
 	use({ "OXY2DEV/markview.nvim", config = [[require('markview_config')]], branch = "main" })
 	-- AI Plugins:
 
-	-- Completion:
+	-- Completion / LLM:
 	-- use { 'milanglacier/minuet-ai.nvim',
 	--   config = [[require('minuet_config')]],
 	--   branch = 'main',
