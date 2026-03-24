@@ -72,8 +72,7 @@ return require("packer").startup(function(use)
 
 	-- File Explorer:
 	-- use { 'kevinhwang91/rnvimr', config = [[require('ranger_config')]] }
-	use({ "stevearc/oil.nvim", requires = "kyazdani42/nvim-web-devicons", config = [[require('oil_config')]] })
-	use({ "benomahony/oil-git.nvim", requires = "stevearc/oil.nvim" })
+	use({ "luukvbaal/nnn.nvim", config = [[require('nnn_config')]] })
 
 	-- Formatter:
 	use({ "sbdchd/neoformat" })
