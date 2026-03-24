@@ -100,25 +100,25 @@ local yd_root_pattern = function(x)
   end
 end
 
--- This is deprecated, but I'm having issues with the new way of doing things.
-require 'lspconfig'.clojure_lsp.setup {
-  cmd = { "clojure-lsp" },
-  filetypes = { "clojure", "edn" },
-  root_dir = yd_root_pattern,
-  on_attach = function(client, bufnr)
-    client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
-  end,
-}
-
--- vim.lsp.config('clojure-lsp', {
+-- -- This is deprecated, but I'm having issues with the new way of doing things.
+-- require 'lspconfig'.clojure_lsp.setup {
 --   cmd = { "clojure-lsp" },
 --   filetypes = { "clojure", "edn" },
 --   root_dir = yd_root_pattern,
 --   on_attach = function(client, bufnr)
 --     client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
 --   end,
--- })
--- vim.lsp.enable('clojure_lsp')
+-- }
+
+vim.lsp.config('clojure-lsp', {
+  cmd = { "clojure-lsp" },
+  filetypes = { "clojure", "edn" },
+  root_dir = yd_root_pattern,
+  on_attach = function(client, bufnr)
+    client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
+  end,
+})
+vim.lsp.enable('clojure_lsp')
 
 vim.lsp.config('eslint', {
   cmd = { "vscode-eslint-language-server", "--stdio" },
@@ -164,7 +164,8 @@ vim.lsp.enable('jsonls')
 
 -- require 'lspconfig'.lua_ls.setup {
 -- vim.lsp.config('lua_ls', {
-require 'lspconfig'.lua_ls.setup {
+-- require 'lspconfig'.lua_ls.setup {
+vim.lsp.config('lua_ls', {
   on_attach = custom_lsp_attach,
   root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
   settings = {
@@ -189,15 +190,17 @@ require 'lspconfig'.lua_ls.setup {
     },
   },
 }
+)
 -- vim.lsp.enable('lua_ls')
 
-require 'lspconfig'.graphql.setup {
+-- require 'lspconfig'.graphql.setup {
+vim.lsp.config('graphql', {
 -- vim.lsp.config('graphql', {
   on_attach = custom_lsp_attach,
   -- root_dir = yd_root_pattern,
   root_dir = util.root_pattern('.graphqlrc*', '.graphql.config.*', 'graphql.config.*', '.git'),
   filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
-}
+})
 -- vim.lsp.enable('graphql')
 
 -- require 'lspconfig'.jedi_language_server.setup {
@@ -206,10 +209,12 @@ vim.lsp.config('jedi_language_server', {
 })
 vim.lsp.enable('jedi_language_server')
 
-require 'lspconfig'.bashls.setup {
+-- require 'lspconfig'.bashls.setup {
+vim.lsp.config('bashls', {
   on_attach = custom_lsp_attach,
-}
+})
 
-require 'lspconfig'.fish_lsp.setup {
+-- require 'lspconfig'.fish_lsp.setup {
+vim.lsp.config('fish_lsp', {
   on_attach = custom_lsp_attach,
-}
+})
