@@ -1,5 +1,3 @@
-vim.deprecate = function() end
-
 require("plugins")
 require("theme")
 
