@@ -21,7 +21,8 @@ return require("packer").startup(function(use)
 	use("tpope/vim-repeat")
 	use("tpope/vim-commentary")
 	use("tpope/vim-surround")
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = [[require('treesitter_config')]] })
+	-- use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = [[require('treesitter_config')]], branch = "main" })
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", branch = "main" })
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" }, { "nvim-telescope/telescope-fzf-native.nvim", run = "make" } },
@@ -70,10 +71,6 @@ return require("packer").startup(function(use)
 		branch = "main",
 	})
 
-	-- File Explorer:
-	-- use { 'kevinhwang91/rnvimr', config = [[require('ranger_config')]] }
-	use({ "luukvbaal/nnn.nvim", config = [[require('nnn_config')]] })
-
 	-- Formatter:
 	use({ "sbdchd/neoformat" })
 	use({ "stevearc/conform.nvim", config = [[require('conform_config')]] })
@@ -121,6 +118,20 @@ return require("packer").startup(function(use)
 		config = [[require('obsidian_config')]],
 	})
 	-- use({ "epwalsh/obsidian.nvim", requires = { "nvim-lua/plenary.nvim" } })
+
+	-- File Explorer:
+	-- use { 'kevinhwang91/rnvimr', config = [[require('ranger_config')]] }
+	-- use({ "luukvbaal/nnn.nvim", config = [[require('nnn_config')]] })
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
+		config = [[require('neotree_config')]],
+	})
 
 	if packer_bootstrap then
 		require("packer").sync()

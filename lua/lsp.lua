@@ -1,27 +1,27 @@
-local util = require('lspconfig.util')
+local util = require("lspconfig.util")
 local custom_lsp_attach = function(client, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', '<leader>k', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
-  -- vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, bufopts)
-  -- if client.server_capabilities.documentFormattingProvider then
-  --   vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end, bufopts)
-  -- end
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  -- vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
-  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gD', "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
-  -- vim.keymap.set('n', 'ge', vim.diagnostic.setloclist, bufopts)
-  -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  -- client.server_capabilities.documentFormattingProvider = true
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	vim.keymap.set("n", "<leader>k", vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set("n", "<leader>d", vim.lsp.buf.type_definition, bufopts)
+	-- vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, bufopts)
+	-- if client.server_capabilities.documentFormattingProvider then
+	--   vim.keymap.set('n', '<leader>p', function() vim.lsp.buf.format { async = true } end, bufopts)
+	-- end
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+	-- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+	-- vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, bufopts)
+	-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+	vim.keymap.set("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
+	-- vim.keymap.set('n', 'ge', vim.diagnostic.setloclist, bufopts)
+	-- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+	-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	-- client.server_capabilities.documentFormattingProvider = true
 end
 
 -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-vim.keymap.set('n', 'gD', "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
+vim.keymap.set("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", bufopts)
 
 -- local signs = {
 --   { name = "DiagnosticSignError", text = "" },
@@ -36,46 +36,46 @@ vim.keymap.set('n', 'gD', "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", b
 -- end
 
 vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = ""
-    },
-    texthl = {
-      [vim.diagnostic.severity.ERROR] = "Error",
-      [vim.diagnostic.severity.WARN] = "Warn",
-      [vim.diagnostic.severity.INFO] = "Info",
-      [vim.diagnostic.severity.HINT] = "Hint"
-    },
-    numhl = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = ""
-    }
-  }
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+		texthl = {
+			[vim.diagnostic.severity.ERROR] = "Error",
+			[vim.diagnostic.severity.WARN] = "Warn",
+			[vim.diagnostic.severity.INFO] = "Info",
+			[vim.diagnostic.severity.HINT] = "Hint",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+	},
 })
 
 local config = {
-  virtual_text = true,
-  -- show signs
-  -- signs = {
-  --   active = signs,
-  -- },
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focus = false,
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = "never",
-    -- header = "",
-    -- prefix = "",
-  },
+	virtual_text = true,
+	-- show signs
+	-- signs = {
+	--   active = signs,
+	-- },
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focus = false,
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "never",
+		-- header = "",
+		-- prefix = "",
+	},
 }
 
 -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -90,14 +90,14 @@ local config = {
 
 vim.diagnostic.config(config)
 
-local yd_root_pattern = function(x)
-  local git_root = util.root_pattern(".git")(x)
-  if git_root then
-    -- return git_root .. "/yd"
-    return git_root
-  else
-    return util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn")
-  end
+local yd_root_pattern = function(bufnr, on_dir)
+	local filename = vim.api.nvim_buf_get_name(bufnr)
+	local git_root = util.root_pattern(".git")(filename)
+	if git_root then
+		on_dir(git_root .. "/yd")
+	else
+		on_dir(util.root_pattern("project.clj", "deps.edn", "build.boot", "shadow-cljs.edn", "bb.edn")(filename))
+	end
 end
 
 -- -- This is deprecated, but I'm having issues with the new way of doing things.
@@ -110,111 +110,121 @@ end
 --   end,
 -- }
 
-vim.lsp.config('clojure-lsp', {
-  cmd = { "clojure-lsp" },
-  filetypes = { "clojure", "edn" },
-  root_dir = yd_root_pattern,
-  on_attach = function(client, bufnr)
-    client.server_capabilities.completionProvider = false; custom_lsp_attach(client, bufnr);
-  end,
+vim.lsp.config("clojure_lsp", {
+	cmd = { "clojure-lsp" },
+	filetypes = { "clojure", "edn" },
+	root_markers = {},
+	root_dir = yd_root_pattern,
+	on_attach = function(client, bufnr)
+		client.server_capabilities.completionProvider = false
+		custom_lsp_attach(client, bufnr)
+	end,
 })
-vim.lsp.enable('clojure_lsp')
+vim.lsp.enable("clojure_lsp")
 
-vim.lsp.config('eslint', {
-  cmd = { "vscode-eslint-language-server", "--stdio" },
-  filetypes = { "javascript", "typescript" },
-  -- cmd = { "eslint", "--stdin" },
-  settings = {
-    packageManager = "yarn"
-  },
-  -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-  codeAction = {
-    disableRuleComment = {
-      enable = false,
-      location = "separateLine"
-    },
-    showDocumentation = {
-      enable = true
-    }
-  },
-  -- packageManager = "yarn",
-  -- on_init = function(client, initialize_result) client.resolved_capabilities.document_formatting = true; end,
-  on_attach = custom_lsp_attach
+vim.lsp.config("eslint", {
+	cmd = { "vscode-eslint-language-server", "--stdio" },
+	filetypes = { "javascript", "typescript" },
+	-- cmd = { "eslint", "--stdin" },
+	settings = {
+		packageManager = "yarn",
+	},
+	-- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+	codeAction = {
+		disableRuleComment = {
+			enable = false,
+			location = "separateLine",
+		},
+		showDocumentation = {
+			enable = true,
+		},
+	},
+	-- packageManager = "yarn",
+	-- on_init = function(client, initialize_result) client.resolved_capabilities.document_formatting = true; end,
+	on_attach = custom_lsp_attach,
 })
-vim.lsp.enable('eslint')
+vim.lsp.enable("eslint")
 
 -- require 'lspconfig'.ts_ls.setup {
 
-vim.lsp.config('ts_ls', {
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-  completionProvider = true,
-  -- client.server_capabilities.documentFormattingProvider = false,
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false;
-    custom_lsp_attach(client, bufnr);
-  end
+vim.lsp.config("ts_ls", {
+	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+	completionProvider = true,
+	-- client.server_capabilities.documentFormattingProvider = false,
+	on_attach = function(client, bufnr)
+		client.server_capabilities.documentFormattingProvider = false
+		custom_lsp_attach(client, bufnr)
+	end,
 })
-vim.lsp.enable('ts_ls')
+vim.lsp.enable("ts_ls")
 
 -- require 'lspconfig'.jsonls.setup {
-vim.lsp.config('jsonls', {
-  on_attach = custom_lsp_attach
+vim.lsp.config("jsonls", {
+	on_attach = custom_lsp_attach,
 })
-vim.lsp.enable('jsonls')
+vim.lsp.enable("jsonls")
 
 -- require 'lspconfig'.lua_ls.setup {
 -- vim.lsp.config('lua_ls', {
 -- require 'lspconfig'.lua_ls.setup {
-vim.lsp.config('lua_ls', {
-  on_attach = custom_lsp_attach,
-  root_dir = util.root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git"),
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false,
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
-)
+vim.lsp.config("lua_ls", {
+	on_attach = custom_lsp_attach,
+	root_dir = util.root_pattern(
+		".luarc.json",
+		".luarc.jsonc",
+		".luacheckrc",
+		".stylua.toml",
+		"stylua.toml",
+		"selene.toml",
+		"selene.yml",
+		".git"
+	),
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})
 -- vim.lsp.enable('lua_ls')
 
 -- require 'lspconfig'.graphql.setup {
-vim.lsp.config('graphql', {
--- vim.lsp.config('graphql', {
-  on_attach = custom_lsp_attach,
-  -- root_dir = yd_root_pattern,
-  root_dir = util.root_pattern('.graphqlrc*', '.graphql.config.*', 'graphql.config.*', '.git'),
-  filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
+vim.lsp.config("graphql", {
+	-- vim.lsp.config('graphql', {
+	on_attach = custom_lsp_attach,
+	-- root_dir = yd_root_pattern,
+	root_dir = util.root_pattern(".graphqlrc*", ".graphql.config.*", "graphql.config.*", ".git"),
+	filetypes = { "graphql", "typescript", "javascript", "typescriptreact", "javascriptreact" },
 })
 -- vim.lsp.enable('graphql')
 
 -- require 'lspconfig'.jedi_language_server.setup {
-vim.lsp.config('jedi_language_server', {
-  on_attach = custom_lsp_attach,
+vim.lsp.config("jedi_language_server", {
+	on_attach = custom_lsp_attach,
 })
-vim.lsp.enable('jedi_language_server')
+vim.lsp.enable("jedi_language_server")
 
 -- require 'lspconfig'.bashls.setup {
-vim.lsp.config('bashls', {
-  on_attach = custom_lsp_attach,
+vim.lsp.config("bashls", {
+	on_attach = custom_lsp_attach,
 })
 
 -- require 'lspconfig'.fish_lsp.setup {
-vim.lsp.config('fish_lsp', {
-  on_attach = custom_lsp_attach,
+vim.lsp.config("fish_lsp", {
+	on_attach = custom_lsp_attach,
 })

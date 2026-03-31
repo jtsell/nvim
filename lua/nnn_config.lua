@@ -1,7 +1,7 @@
 require("nnn").setup({
   replace_netrw = "picker",
   picker = {
-    cmd = "nnn -a",
+    cmd = "NNN_FIFO=/tmp/nnn-nvim.fifo NNN_PLUG='p:preview-tui' nnn -a",
     style = {
       width = 0.9,
       height = 0.8,
